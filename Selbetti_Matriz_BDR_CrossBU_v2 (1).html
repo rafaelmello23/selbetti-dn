@@ -1,0 +1,2475 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selbetti — Matriz BDR Cross-BU</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:14px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:#f6f6f4;color:#1a1a18;min-height:100vh}
+.app-shell{max-width:780px;margin:0 auto;padding:16px 12px 48px}
+.app-header{padding:20px 0 16px;border-bottom:1px solid #e4e4e0;margin-bottom:16px}
+.app-logo{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#888780;margin-bottom:4px}
+.app-title{font-size:20px;font-weight:600;color:#1f6b4a;line-height:1.2}
+.app-sub{font-size:12px;color:#888780;margin-top:3px}
+.seg-nav{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px}
+.sn{padding:5px 12px;border-radius:6px;border:1px solid #ddddd8;background:#fff;color:#555552;font-size:11px;cursor:pointer;transition:all .12s;font-family:inherit}
+.sn:hover{background:#f0f0ed;border-color:#bbbbb6}
+.sn.active{background:#1f6b4a;color:#fff;border-color:#1f6b4a;font-weight:600}
+.seg-panel{display:none}.seg-panel.active{display:block}
+.view-panel{display:none}.view-panel.active{display:block}
+.seg-desc{font-size:11px;color:#666663;margin-bottom:12px;padding:8px 12px;background:#fff;border-radius:8px;border:1px solid #e4e4e0;line-height:1.5}
+.view-toggle{display:flex;gap:6px;margin-bottom:12px;padding:5px;background:#ededea;border-radius:9px}
+.vt{flex:1;padding:6px 10px;border-radius:6px;border:none;background:transparent;text-align:center;font-size:11px;color:#666663;cursor:pointer;font-family:inherit;transition:all .15s}
+.vt.active{background:#fff;color:#1a1a18;font-weight:500;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.sol-block{border:1px solid #e4e4e0;border-radius:10px;overflow:hidden;margin-bottom:8px;background:#fff}
+.sol-hd{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#f6f6f4;cursor:pointer;user-select:none}
+.sol-hd:hover{background:#ededea}
+.sol-title{font-size:12px;font-weight:500;color:#1a1a18;flex:1;line-height:1.4}
+.chev{font-size:11px;color:#aaa;transition:transform .18s;display:inline-block;flex-shrink:0}
+.chev.open{transform:rotate(180deg)}
+.sol-body{display:none;padding:8px 12px 12px;border-top:1px solid #e4e4e0}
+.sol-body.open{display:block}
+.p-card{border:1px solid #e4e4e0;border-radius:8px;overflow:hidden;margin-bottom:6px;background:#fff}
+.p-card:last-child{margin-bottom:0}
+.p-hd{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#fafaf8;cursor:pointer;user-select:none}
+.p-hd:hover{background:#f3f3f0}
+.p-av{width:28px;height:28px;border-radius:50%;background:#dbedf5;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#1a4f6e;flex-shrink:0}
+.p-meta{flex:1;min-width:0}
+.p-name{font-size:11px;font-weight:500;color:#1a1a18;line-height:1.3}
+.p-role-row{display:flex;align-items:center;gap:4px;margin-top:3px;flex-wrap:wrap}
+.rb{font-size:9px;padding:1px 7px;border-radius:20px;font-weight:500;white-space:nowrap}
+.rb-dec{background:#dbeaf7;color:#1a4f6e;border:1px solid #b8d4ed}
+.rb-inf{background:#fef3cd;color:#7a5c0a;border:1px solid #f0d98a}
+.rb-usr{background:#d6f0e2;color:#1a5c35;border:1px solid #a8ddc0}
+.rec-tag{font-size:9px;padding:1px 7px;border-radius:20px;background:#f0f0ed;color:#888780;border:1px solid #ddddd8;white-space:normal;line-height:1.4}
+.rec-tag span{color:#555552;font-weight:500}
+.p-body{display:none;padding:10px 12px;border-top:1px solid #e4e4e0}
+.p-body.open{display:block}
+.lbl{font-size:9px;color:#aaa;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;margin-top:10px}
+.lbl:first-child{margin-top:0}
+.dor{font-size:11px;color:#c0392b;line-height:1.6;padding:7px 10px;background:#fef0ee;border-radius:5px;border:1px solid #f5c6c0}
+.gancho{font-size:11px;color:#1a1a18;line-height:1.6;padding:7px 10px;background:#f0f7f3;border-radius:5px;border-left:3px solid #1f6b4a;font-style:italic}
+.tags{display:flex;flex-wrap:wrap;gap:3px;margin-top:4px}
+.tag{font-size:9px;padding:2px 8px;border-radius:20px;background:#dbeaf7;color:#1a4f6e;border:1px solid #b8d4ed}
+.abtn{display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:10px;padding:4px 10px;border-radius:6px;border:1px solid #ddddd8;background:#fff;color:#555552;cursor:pointer;font-family:inherit}
+.abtn:hover{background:#f6f6f4}
+.inf-card{margin-top:8px;border:1px solid #f0d98a;border-radius:7px;overflow:hidden}
+.inf-hd{display:flex;align-items:center;gap:6px;padding:6px 10px;background:#fef9eb;cursor:pointer;user-select:none}
+.inf-label{font-size:10px;font-weight:500;color:#7a5c0a;flex:1}
+.inf-body{display:none;background:#fff;border-top:1px solid #f0d98a}
+.inf-body.open{display:block}
+.inf-row{display:flex;align-items:flex-start;gap:8px;padding:8px 10px;border-bottom:1px solid #f3f3f0}
+.inf-row:last-child{border-bottom:none}
+.inf-av{width:24px;height:24px;border-radius:50%;background:#fef3cd;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#7a5c0a;flex-shrink:0;margin-top:1px}
+.inf-name{font-size:11px;font-weight:500;color:#1a1a18;line-height:1.3}
+.inf-papel{font-size:10px;color:#666663;line-height:1.5;margin-top:2px}
+.inf-dica{font-size:10px;color:#7a5c0a;font-style:italic;margin-top:3px}
+.pv-card{border:1px solid #e4e4e0;border-radius:10px;overflow:hidden;margin-bottom:8px;background:#fff}
+.pv-hd{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#fafaf8;cursor:pointer;user-select:none}
+.pv-hd:hover{background:#f3f3f0}
+.pv-av{width:34px;height:34px;border-radius:50%;background:#dbeaf7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#1a4f6e;flex-shrink:0}
+.pv-meta{flex:1}
+.pv-name{font-size:12px;font-weight:500;color:#1a1a18}
+.pv-subs{font-size:10px;color:#888780;margin-top:2px;line-height:1.4}
+.pv-body{display:none;padding:10px 14px;border-top:1px solid #e4e4e0}
+.pv-body.open{display:block}
+.pv-sol{border:1px solid #e4e4e0;border-radius:7px;margin-bottom:6px;overflow:hidden}
+.pv-sol-hd{display:flex;align-items:center;gap:6px;padding:7px 10px;background:#f6f6f4;cursor:pointer;user-select:none}
+.pv-sol-hd:hover{background:#ededea}
+.pv-sol-title{font-size:11px;font-weight:500;color:#1a1a18;flex:1}
+.pv-sol-body{display:none;padding:8px 10px;background:#fff;border-top:1px solid #e4e4e0}
+.pv-sol-body.open{display:block}
+.pitch-box{margin-top:8px;border:1px solid #a8ddc0;border-radius:7px;overflow:hidden}
+.pitch-hd{display:flex;align-items:center;gap:6px;padding:7px 10px;background:#d6f0e2;cursor:pointer;user-select:none}
+.pitch-label{font-size:10px;font-weight:500;color:#1a5c35;flex:1}
+.pitch-body{display:none;padding:10px;background:#f0faf5;border-top:1px solid #a8ddc0}
+.pitch-body.open{display:block}
+.pitch-text{font-size:11px;color:#1a1a18;line-height:1.7;font-style:italic}
+.placeholder-msg{display:flex;flex-direction:column;align-items:center;padding:48px 24px;text-align:center;background:#fff;border-radius:10px;border:1px solid #e4e4e0}
+.ph-icon{font-size:32px;margin-bottom:12px;opacity:.5}
+.ph-title{font-size:14px;font-weight:500;color:#1a1a18;margin-bottom:6px}
+.ph-sub{font-size:12px;color:#888780;line-height:1.5}
+.app-footer{text-align:center;font-size:10px;color:#aaa;margin-top:32px;padding-top:16px;border-top:1px solid #e4e4e0}
+@media(max-width:600px){.app-shell{padding:10px 8px 32px}.app-title{font-size:17px}}
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#1f6b4a;color:#fff;padding:10px 20px;border-radius:8px;font-size:12px;opacity:0;transition:all .25s;pointer-events:none;z-index:9999;white-space:nowrap}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+</style>
+</head>
+<body>
+<div id="toast"></div>
+<div class="app-shell">
+
+<div class="app-header">
+  <div class="app-logo">Selbetti Tecnologia S.A.</div>
+  <div class="app-title">Matriz de Prospecção BDR Cross-BU</div>
+  <div class="app-sub">Segmento · Solução (BU) · Persona · Dor · Gancho · Influenciadores · Pitch unificado · v2.0 · Uso interno</div>
+</div>
+
+<div class="seg-nav" role="tablist">
+<button class="sn active" onclick="setSeg('industria')">🏭 Indústria</button>
+<button class="sn" onclick="setSeg('saude')">🏥 Saúde</button>
+<button class="sn" onclick="setSeg('varejo')">🛒 Varejo</button>
+<button class="sn" onclick="setSeg('distribuicao')">🚛 Distribuição</button>
+<button class="sn" onclick="setSeg('servicos')">🏢 Serviços</button>
+<button class="sn" onclick="setSeg('agronegocio')">🌾 Agronegócio</button>
+<button class="sn" onclick="setSeg('educacao')">🎓 Educação</button>
+<button class="sn" onclick="setSeg('financeiro')">💰 Financeiro</button>
+</div>
+
+<div id="seg-industria" class="seg-panel active">
+  <div class="seg-desc">Manufatura, bens de capital, metalurgia, alimentos, bebidas, ferramentas · MG, PR, RS (Serra Gaúcha), SC (Vale do Itajaí)</div>
+  <div class="view-toggle">
+    <div class="vt active" onclick="setView('industria','bu',this)">📦 Ver por Solução (BU)</div>
+    <div class="vt" onclick="setView('industria','p',this)">👤 Ver por Persona</div>
+  </div>
+  <div id="industria-bu" class="view-panel active"><div class="sol-block">
+  <div class="sol-hd" onclick="tog(this)">
+    <span class="sol-title">🔒 Cybersecurity Solutions — SOC, Cybersegurança, LGPD</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="sol-body"><div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">CTO</div>
+    <div class="p-meta">
+      <div class="p-name">CTO / Diretor de TI</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">também em: <span>também em: IT Solutions · IT Devices · Data&AI</span></span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Sofremos tentativas de ataque e meu time não monitora 24×7. Se o sistema cair, a produção para."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">SOC 24×7</span><span class="tag">Cyberseg. OT/IT</span><span class="tag">Seg. Informação</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Indústrias da sua regional sofreram ataques em 2024. Uma parada na linha custa quanto por hora? Nosso SOC detecta e responde em tempo real, sem equipe interna. Vale 20 min?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — CTO / Diretor de TI — SOC 24×7')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">CISO</div>
+          <div>
+            <div class="inf-name">CISO / Ger. Segurança da Informação</div>
+            <div class="inf-papel">Define requisitos técnicos e valida se o SOC atende as exigências internas.</div>
+            <div class="inf-dica">💡 Aborde antes do CTO quando existir — ele embasa a decisão tecnicamente.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">CFO</div>
+          <div>
+            <div class="inf-name">CFO / Diretor Financeiro</div>
+            <div class="inf-papel">Aprova o orçamento. Precisa ver ROI: custo do SOC versus custo de um incidente.</div>
+            <div class="inf-dica">💡 Leve dados de custo médio de ransomware no setor industrial para a conversa.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">INF</div>
+          <div>
+            <div class="inf-name">Gerente de Infraestrutura</div>
+            <div class="inf-papel">Operacionaliza a integração. Pode travar se achar que gera trabalho extra.</div>
+            <div class="inf-dica">💡 Mostre que a integração é feita pela Selbetti — ele não precisa fazer nada.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div>
+<div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">CFO</div>
+    <div class="p-meta">
+      <div class="p-name">CFO / Diretor Financeiro</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">também em: <span>também em: Process Sol. · Data&AI · IT Devices</span></span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Não sei quanto custaria um incidente. O seguro cibernético exige evidências de controles que não temos."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">SOC 24×7</span><span class="tag">LGPD</span><span class="tag">Gestão de Riscos</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Um incidente de ransomware custa em média 3× mais do que a prevenção. Posso te mostrar o quanto custa proteger versus remediar?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — CFO / Diretor Financeiro — SOC 24×7')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">CTO</div>
+          <div>
+            <div class="inf-name">CTO / Diretor de TI</div>
+            <div class="inf-papel">Precisa validar tecnicamente. Se o CFO aprovar e o CTO não quiser, a venda trava.</div>
+            <div class="inf-dica">💡 Envolva o CTO assim que o CFO demonstrar interesse — nunca o deixe de fora.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">DPO</div>
+          <div>
+            <div class="inf-name">DPO / Responsável por LGPD</div>
+            <div class="inf-papel">Valida a adequação da solução às exigências de privacidade e conformidade.</div>
+            <div class="inf-dica">💡 Mencionar LGPD para o CFO abre porta para incluir o DPO na conversa.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div>
+<div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">CISO</div>
+    <div class="p-meta">
+      <div class="p-name">CISO / Ger. de Segurança da Informação</div>
+      <div class="p-role-row"><span class="rb rb-inf">Influenciador</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Temos ferramentas de segurança mas não temos equipe para operar e responder 24×7."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">SOC Gerenciado</span><span class="tag">Privacidade de Dados</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Nosso SOC gerenciado opera 24×7 e entrega relatório em tempo real — visibilidade total sem equipe interna. Vale 20 min?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — CISO / Ger. de Segurança da Informação — SOC Gerenciado')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">CTO</div>
+          <div>
+            <div class="inf-name">CTO / Diretor de TI</div>
+            <div class="inf-papel">Decisor final. O CISO recomenda, o CTO aprova.</div>
+            <div class="inf-dica">💡 Peça ao CISO que te apresente ao CTO — ele tem credibilidade para isso.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="sol-block">
+  <div class="sol-hd" onclick="tog(this)">
+    <span class="sol-title">🖥️ IT Solutions — Cloud, Outsourcing de TI, Observabilidade</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="sol-body"><div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">CTO</div>
+    <div class="p-meta">
+      <div class="p-name">CTO / Diretor de TI</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">também em: <span>também em: Cybersecurity · IT Devices · Data&AI</span></span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"TI interna não cobre todos os turnos. Sistemas caem nos picos de produção e ficamos às cegas."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Selbetti ITO</span><span class="tag">Selbetti Cloud</span><span class="tag">Observabilidade 24×7</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Com Selbetti ITO você tem TI especializada 24×7 sem custo CLT. A observabilidade detecta falha antes de virar parada. Vale 20 min?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — CTO / Diretor de TI — Selbetti ITO')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">INF</div>
+          <div>
+            <div class="inf-name">Gerente de Infraestrutura</div>
+            <div class="inf-papel">Operacionaliza o ITO. Pode ser campeão ou bloqueador — depende se sente ameaça ao seu cargo.</div>
+            <div class="inf-dica">💡 Posicione o ITO como apoio ao time dele, não substituição.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">CFO</div>
+          <div>
+            <div class="inf-name">CFO / Diretor Financeiro</div>
+            <div class="inf-papel">Aprova o contrato. Precisa ver TCO versus equipe interna.</div>
+            <div class="inf-dica">💡 Prepare comparação opex vs. capex+headcount para o CFO.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">CEO</div>
+          <div>
+            <div class="inf-name">CEO / Diretor Geral</div>
+            <div class="inf-papel">Em PMEs, o CEO participa de decisões de TI quando o valor é alto.</div>
+            <div class="inf-dica">💡 Se o CTO mencionar aprovação superior, peça reunião conjunta.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div>
+<div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">INF</div>
+    <div class="p-meta">
+      <div class="p-name">Gerente de Infraestrutura</div>
+      <div class="p-role-row"><span class="rb rb-inf">Influenciador</span><span class="rb rb-usr">Usuário final</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Servidor local ficando obsoleto mas migrar para cloud sem suporte especializado é arriscado."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Selbetti Cloud</span><span class="tag">Datacenter</span><span class="tag">MultiCloud</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"A Selbetti conduz a migração para cloud com zero downtime — planejamos, migramos e monitoramos. Sua equipe aprende junto. Posso te mostrar?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — Gerente de Infraestrutura — Selbetti Cloud')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">CTO</div>
+          <div>
+            <div class="inf-name">CTO / Diretor de TI</div>
+            <div class="inf-papel">Decisor final. O Gerente de Infra recomenda — o CTO aprova.</div>
+            <div class="inf-dica">💡 Peça ao Gerente de Infra que te apresente ao CTO após o diagnóstico.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="sol-block">
+  <div class="sol-hd" onclick="tog(this)">
+    <span class="sol-title">🏷️ Label Solutions — RFID, Coletores, Impressoras Térmicas</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="sol-body"><div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">PRD</div>
+    <div class="p-meta">
+      <div class="p-name">Gerente de Produção</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rb rb-usr">Usuário final</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Rastreabilidade de insumos no chão de fábrica é inexistente. Inventário desatualizado gera retrabalho constante."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">RFID</span><span class="tag">Coletores</span><span class="tag">Impr. Térmicas</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Com RFID no chão de fábrica, inventário que levava dias passa a ser feito em minutos. Posso mostrar dois cases da região?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — Gerente de Produção — RFID')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">TI / Gerente de Sistemas</div>
+            <div class="inf-papel">Valida integração do RFID com o ERP. Frequentemente trava a compra se não for envolvido.</div>
+            <div class="inf-dica">💡 Peça ao Ger. de Produção que inclua o TI na 2ª reunião — mostre a facilidade de integração.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">LOG</div>
+          <div>
+            <div class="inf-name">Gerente de Logística</div>
+            <div class="inf-papel">Usuário secundário — rastreabilidade beneficia diretamente a expedição.</div>
+            <div class="inf-dica">💡 Aliado natural. Pode ajudar a construir o caso de negócio internamente.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">COM</div>
+          <div>
+            <div class="inf-name">Comprador / Ger. de Suprimentos</div>
+            <div class="inf-papel">Conduz o processo de cotação. Vai comparar preço com concorrentes.</div>
+            <div class="inf-dica">💡 Não deixe o Comprador ser o único contato — mantenha o Ger. de Produção engajado.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div>
+<div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">LOG</div>
+    <div class="p-meta">
+      <div class="p-name">Gerente de Logística / Supply Chain</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rb rb-usr">Usuário final</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Erro na etiquetagem de peças e lotes gera retrabalho e devolução de clientes."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Impr. Térmicas</span><span class="tag">Etiquetas e Rótulos</span><span class="tag">RFID</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Impressoras térmicas integradas à linha eliminam erro de etiquetagem e aceleram expedição. Posso te mostrar como indústrias do seu porte fizeram isso?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — Gerente de Logística / Supply Chain — Impr. Térmicas')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">TI / Gerente de Sistemas</div>
+            <div class="inf-papel">Integração das impressoras com ERP e sistema de expedição.</div>
+            <div class="inf-dica">💡 Mostre integração nativa com os principais ERPs industriais brasileiros.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">COM</div>
+          <div>
+            <div class="inf-name">Comprador</div>
+            <div class="inf-papel">Conduz a cotação. Pode inserir concorrentes no processo.</div>
+            <div class="inf-dica">💡 Mantenha o Ger. de Logística como sponsor — o Comprador seguirá a direção dele.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div>
+<div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">ENG</div>
+    <div class="p-meta">
+      <div class="p-name">Engenharia / Qualidade</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rb rb-inf">Influenciador</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Rastreabilidade de lote para certificação ISO ou clientes automotivos é exigência que não consigo cumprir com etiqueta manual."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">RFID</span><span class="tag">Softwares Label Design</span><span class="tag">Coletores</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Para indústrias com exigência de rastreabilidade de lote — ISO, automotivo ou exportação — RFID é o único caminho auditável. Posso te mostrar?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — Engenharia / Qualidade — RFID')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">TI / Gerente de Sistemas</div>
+            <div class="inf-papel">Integração do software Label Design com QMS e ERP. Papel crítico.</div>
+            <div class="inf-dica">💡 Mostre que a Selbetti cuida da integração — destrói o principal bloqueio do TI.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">DIR</div>
+          <div>
+            <div class="inf-name">Diretor Industrial / CEO</div>
+            <div class="inf-papel">Certificação ISO impacta receita — decisor sênior tem interesse direto.</div>
+            <div class="inf-dica">💡 Use o argumento de certificação para subir a conversa ao Diretor Industrial.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="sol-block">
+  <div class="sol-hd" onclick="tog(this)">
+    <span class="sol-title">⚙️ Process Solutions — RPA, BPMS, S-SIGN, ECM</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="sol-body"><div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">OPS</div>
+    <div class="p-meta">
+      <div class="p-name">Gerente de Processos / COO</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"NF manual, aprovação por e-mail, conciliação em planilha. Escalamos pessoas em vez de processos."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">RPA</span><span class="tag">BPMS</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Empresas do seu porte perdem 15–20% de produtividade em processos automatizáveis em semanas. Posso mostrar dois cases da região?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — Gerente de Processos / COO — RPA')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">TI / Gerente de Sistemas</div>
+            <div class="inf-papel">RPA exige integração com ERP e sistemas legados. Pode ser o maior bloqueador desta venda.</div>
+            <div class="inf-dica">💡 Apresente o RPA como camada sobre os sistemas existentes — sem precisar trocar nada.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">CFO</div>
+          <div>
+            <div class="inf-name">CFO / Controller</div>
+            <div class="inf-papel">Aprova o investimento e vai exigir ROI claro.</div>
+            <div class="inf-dica">💡 Leve calculadora de ROI: horas/mês economizadas × custo hora do colaborador.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">ADM</div>
+          <div>
+            <div class="inf-name">Gerente Administrativo</div>
+            <div class="inf-papel">Usuário final do RPA — é quem mais se beneficia. Pode ser campeão interno forte.</div>
+            <div class="inf-dica">💡 O Ger. Adm. frequentemente empurra a venda internamente se você mostrar o benefício para ele.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div>
+<div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">ADM</div>
+    <div class="p-meta">
+      <div class="p-name">Gerente Administrativo</div>
+      <div class="p-role-row"><span class="rb rb-inf">Influenciador</span><span class="rb rb-usr">Usuário final</span><span class="rec-tag">também em: <span>também em: IT Devices · Print Sol.</span></span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Contratos com fornecedores ainda em papel. Arquivo físico enorme, difícil de consultar."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">S-SIGN</span><span class="tag">ECM</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Com S-SIGN, fornecedor assina pelo celular com validade jurídica. ECM arquiva e indexa automaticamente. Qualquer contrato em segundos. Posso mostrar?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — Gerente Administrativo — S-SIGN')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">TI / Gerente de Sistemas</div>
+            <div class="inf-papel">Valida integração do ECM com o ERP e conformidade do S-SIGN.</div>
+            <div class="inf-dica">💡 Mostre que S-SIGN tem API e integração nativa com os principais ERPs.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">JUR</div>
+          <div>
+            <div class="inf-name">Jurídico / Compliance</div>
+            <div class="inf-papel">Precisa validar a validade jurídica do S-SIGN.</div>
+            <div class="inf-dica">💡 Leve documentação ICP-Brasil e exemplos de validade em contratos comerciais.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div>
+<div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">CFO</div>
+    <div class="p-meta">
+      <div class="p-name">CFO / Controller</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">também em: <span>também em: Cybersecurity · Data&AI · IT Devices</span></span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Conciliação bancária manual consome dias do time. Erros de lançamento só aparecem no fechamento do mês."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">RPA financeiro</span><span class="tag">Sistema de Cobrança</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"RPA automatiza a conciliação bancária — zero digitação, erros em tempo real. Seu time para de conferir planilha e começa a analisar. Vale 20 min?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — CFO / Controller — RPA financeiro')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">TI / Gerente de Sistemas</div>
+            <div class="inf-papel">Integração do RPA com o sistema bancário e ERP financeiro.</div>
+            <div class="inf-dica">💡 RPA financeiro não altera o ERP — só lê e escreve nos sistemas existentes.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">CTL</div>
+          <div>
+            <div class="inf-name">Analista / Supervisor Financeiro</div>
+            <div class="inf-papel">Usuário final — faz a conciliação hoje. Pode resistir por medo de substituição.</div>
+            <div class="inf-dica">💡 Posicione como liberação para análise estratégica, não substituição.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="sol-block">
+  <div class="sol-hd" onclick="tog(this)">
+    <span class="sol-title">🏪 Retail Experience — Inteligência de Preços (fabricantes que vendem para o varejo)</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="sol-body"><div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">TRD</div>
+    <div class="p-meta">
+      <div class="p-name">Gerente de Trade Marketing</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rb rb-usr">Usuário final</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Não sei se meus produtos estão sendo precificados corretamente nas gôndolas dos varejistas. Perco compliance de preço sugerido sem saber."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Inteligência de Preços</span><span class="tag">Monitoria de Preços PDV</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Fabricantes do seu porte perdem compliance de preço sugerido sem visibilidade nenhuma. Nossa solução monitora suas SKUs em tempo real nos PDVs dos varejistas. Vale 20 min?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — Gerente de Trade Marketing — Inteligência de Preços')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">DIR</div>
+          <div>
+            <div class="inf-name">Diretor Comercial / KAM</div>
+            <div class="inf-papel">Decisor sênior que usa dados de pricing para negociar com varejistas.</div>
+            <div class="inf-dica">💡 Conecte a inteligência de preços ao poder de negociação do Diretor Comercial.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">MKT</div>
+          <div>
+            <div class="inf-name">Gerente de Marketing / Produto</div>
+            <div class="inf-papel">Preocupado com posicionamento de marca e erosão de margem.</div>
+            <div class="inf-dica">💡 Mostre como a monitoria de preços protege o posicionamento de marca nos PDVs.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div>
+<div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">DIR</div>
+    <div class="p-meta">
+      <div class="p-name">Diretor Comercial / KAM</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Não tenho como monitorar se os varejistas respeitam o preço sugerido. Quando descubro a distorção, já perdeu margem e posicionamento."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Inteligência de Preços</span><span class="tag">Gestão de Ofertas</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Nossa solução monitora o preço dos seus produtos em tempo real nos PDVs dos clientes varejistas — você age antes de perder margem e posicionamento. Vale 20 min?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — Diretor Comercial / KAM — Inteligência de Preços')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">TRD</div>
+          <div>
+            <div class="inf-name">Gerente de Trade Marketing</div>
+            <div class="inf-papel">Usuário operacional. Campeão natural — vai usar os dados no dia a dia.</div>
+            <div class="inf-dica">💡 Envolva Trade Marketing desde a demo — eles validam o produto e influenciam o Diretor Comercial.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">CEO</div>
+          <div>
+            <div class="inf-name">CEO / Diretor Geral</div>
+            <div class="inf-papel">Em indústrias de médio porte, CEO participa de decisões de inteligência comercial.</div>
+            <div class="inf-dica">💡 Mostre impacto em margem e posicionamento de marca — argumento que chega ao CEO.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="sol-block">
+  <div class="sol-hd" onclick="tog(this)">
+    <span class="sol-title">📊 Data & AI — Interactive Intelligence, MDM, Quality Manager</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="sol-body"><div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">CEO</div>
+    <div class="p-meta">
+      <div class="p-name">CEO / Diretor Industrial</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">também em: <span>também em: Business Consulting</span></span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Tomo decisões de compra e produção com dados defasados. Não consigo cruzar vendas, estoque e produção em tempo real."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Interactive Intelligence</span><span class="tag">MDM</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Com Interactive Intelligence, qualquer pessoa faz perguntas em linguagem natural e recebe resposta com dados reais da operação — sem depender de TI. Vale 20 min?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — CEO / Diretor Industrial — Interactive Intelligence')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">CTO</div>
+          <div>
+            <div class="inf-name">CTO / Diretor de TI</div>
+            <div class="inf-papel">Valida a arquitetura de dados e integração com ERP, MES e BI. Papel técnico crítico.</div>
+            <div class="inf-dica">💡 Interactive Intelligence não substitui o ERP — consome os dados dele. Argumento que o CTO precisa ouvir.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">CFO</div>
+          <div>
+            <div class="inf-name">CFO / Controller</div>
+            <div class="inf-papel">Aprova o investimento. Precisa ver impacto em decisões financeiras mais assertivas.</div>
+            <div class="inf-dica">💡 Mostre como decisões melhores com dados impactam diretamente o resultado financeiro.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div>
+<div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">DPO</div>
+    <div class="p-meta">
+      <div class="p-name">DPO / Diretor de Riscos</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rb rb-inf">Influenciador</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Auditoria chegou e não consigo demonstrar conformidade. Não sei onde estão todos os dados que armazenamos."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Quality Manager</span><span class="tag">LGPD</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Quality Manager mapeia, governa e monitora riscos de dados — quando a auditoria chega, você tem tudo documentado. Posso te mostrar?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — DPO / Diretor de Riscos — Quality Manager')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">CTO</div>
+          <div>
+            <div class="inf-name">CTO / Diretor de TI</div>
+            <div class="inf-papel">Implementa o mapeamento técnico dos dados. Sem TI, o Quality Manager não funciona.</div>
+            <div class="inf-dica">💡 DPO e CTO precisam estar alinhados. Proponha reunião conjunta desde o início.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">CEO</div>
+          <div>
+            <div class="inf-name">CEO / Diretor Geral</div>
+            <div class="inf-papel">Risco de multa LGPD é risco do negócio. Use o DPO para levar o tema ao CEO.</div>
+            <div class="inf-dica">💡 Multa LGPD de até 2% do faturamento é argumento que chega direto ao CEO.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="sol-block">
+  <div class="sol-hd" onclick="tog(this)">
+    <span class="sol-title">📱 IT Devices — CFTV, Locação de Equipamentos, Segurança Patrimonial</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="sol-body"><div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">SEG</div>
+    <div class="p-meta">
+      <div class="p-name">Diretor de Segurança Patrimonial</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Câmeras antigas não gravam com qualidade. Não controlo quem entra e sai das plantas e depósitos."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">CFTV Corporativo</span><span class="tag">Controle de Acesso</span><span class="tag">Portaria Virtual</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Plantas do seu porte têm em média 3 pontos cegos no CFTV que geram furto sem rastreabilidade. Posso mostrar como resolvemos em indústrias da região?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — Diretor de Segurança Patrimonial — CFTV Corporativo')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">TI / Gerente de Infraestrutura</div>
+            <div class="inf-papel">CFTV moderno integra com a rede corporativa. Frequentemente veta projetos por questões de rede.</div>
+            <div class="inf-dica">💡 Apresente o CFTV como rede segregada — não impacta a infra de TI atual.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">CFO</div>
+          <div>
+            <div class="inf-name">CFO / Ger. Administrativo</div>
+            <div class="inf-papel">Aprova o orçamento. Quer ver redução de furto e ROI de segurança.</div>
+            <div class="inf-dica">💡 Leve dados de redução de furto interno com CFTV + controle de acesso.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div>
+<div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">ADM</div>
+    <div class="p-meta">
+      <div class="p-name">Gerente Administrativo / CFO</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">também em: <span>também em: Process Sol. · Print Sol.</span></span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Alto capex em equipamentos que ficam obsoletos em 3 anos. Manutenção consome tempo do TI."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Locação Notebooks</span><span class="tag">Locação Desktops</span><span class="tag">Seminovos</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Locação converte capex em opex — equipamento sempre atualizado, manutenção inclusa. Posso te mostrar a diferença de custo total?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — Gerente Administrativo / CFO — Locação Notebooks')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">TI / Gerente de Infraestrutura</div>
+            <div class="inf-papel">Define especificações técnicas dos equipamentos.</div>
+            <div class="inf-dica">💡 Envolva TI na escolha do modelo desde o início — cria aliado na venda.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">COM</div>
+          <div>
+            <div class="inf-name">Comprador / Suprimentos</div>
+            <div class="inf-papel">Conduz a cotação formal e pode inserir outros fornecedores.</div>
+            <div class="inf-dica">💡 Mantenha o CFO como sponsor — o Comprador seguirá a direção dele.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="sol-block">
+  <div class="sol-hd" onclick="tog(this)">
+    <span class="sol-title">🖨️ Print Solutions — MPS, Plotters, Digitalização</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="sol-body"><div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">ADM</div>
+    <div class="p-meta">
+      <div class="p-name">Gerente Administrativo / Comprador</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">também em: <span>também em: IT Devices · Process Sol.</span></span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Custo de impressão fora de controle. Não sei quanto imprimimos nem qual departamento gasta mais."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">MPS</span><span class="tag">Software Gestão Impressão</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Com MPS, impressão vira custo fixo por página — você sabe exatamente quanto gasta por departamento, sem surpresa. Posso te mostrar quanto economizaria?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — Gerente Administrativo / Comprador — MPS')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">TI / Gerente de Sistemas</div>
+            <div class="inf-papel">Integração do MPS com a rede e o sistema de autenticação de usuários.</div>
+            <div class="inf-dica">💡 MPS tem integração com Active Directory — argumento que facilita o OK do TI.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div>
+<div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">ENG</div>
+    <div class="p-meta">
+      <div class="p-name">Engenharia / Projetos</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rb rb-usr">Usuário final</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Imprimimos plantas técnicas em impressora comum — qualidade ruim, formato errado e custo alto."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Plotters</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Plotter resolve planta técnica com qualidade e custo por cópia muito menor. Posso te mostrar a diferença de custo na prática?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — Engenharia / Projetos — Plotters')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">ADM</div>
+          <div>
+            <div class="inf-name">Gerente Administrativo</div>
+            <div class="inf-papel">Aprova a compra do equipamento. Precisa ver o custo total versus a alternativa atual.</div>
+            <div class="inf-dica">💡 Leve comparação de custo por cópia: plotter versus impressora convencional.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="sol-block">
+  <div class="sol-hd" onclick="tog(this)">
+    <span class="sol-title">💼 Business Consulting — Consultoria de Processos, Projetos, Outsourcing TI</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="sol-body"><div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">CEO</div>
+    <div class="p-meta">
+      <div class="p-name">CEO / Diretor Industrial</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">também em: <span>também em: Data&AI</span></span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Processos críticos da operação são ineficientes mas não tenho equipe para mapear e reestruturar sem parar o negócio."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Consultoria em Processos</span><span class="tag">Gestão de Mudança</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"A Selbetti mapeia e reestrutura processos críticos sem parar a operação — com gestão de mudança incluída. Atendemos indústrias do seu porte nessa jornada. Vale 20 min?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — CEO / Diretor Industrial — Consultoria em Processos')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">CFO</div>
+          <div>
+            <div class="inf-name">CFO / Diretor Financeiro</div>
+            <div class="inf-papel">Aprova o investimento em consultoria. Precisa ver ROI e prazo de retorno.</div>
+            <div class="inf-dica">💡 Conecte a consultoria a resultados financeiros mensuráveis.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">OPS</div>
+          <div>
+            <div class="inf-name">COO / Gerente de Processos</div>
+            <div class="inf-papel">Executa a mudança operacional. Precisa acreditar no método e no time da Selbetti.</div>
+            <div class="inf-dica">💡 Inclua o COO na reunião de diagnóstico — ele vai validar ou rejeitar o projeto.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div>
+<div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">CTO</div>
+    <div class="p-meta">
+      <div class="p-name">CTO / Diretor de TI</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">também em: <span>também em: IT Solutions · Cybersecurity · Data&AI</span></span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Preciso de especialistas em TI para um projeto crítico mas contratar CLT é lento e caro. Projeto não pode esperar."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Outsourcing TI</span><span class="tag">Alocação de Profissionais</span><span class="tag">BPO</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Alocação de profissionais de TI especializados — recurso certo, no projeto certo, pelo tempo certo, sem custo CLT. Posso te mostrar como funciona?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — CTO / Diretor de TI — Outsourcing TI')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">CFO</div>
+          <div>
+            <div class="inf-name">CFO / Diretor Financeiro</div>
+            <div class="inf-papel">Aprova o contrato de alocação. Custo mensal fixo versus risco de contratação CLT.</div>
+            <div class="inf-dica">💡 Compare o custo de alocação com CLT + encargos + tempo de contratação.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div></div>
+</div></div>
+  <div id="industria-p" class="view-panel"><div class="pv-card">
+  <div class="pv-hd" onclick="togPV(this)">
+    <div class="pv-av">CTO</div>
+    <div class="pv-meta">
+      <div class="pv-name">CTO / Diretor de TI</div>
+      <div class="pv-subs">Decisor em: Cybersecurity · IT Solutions · IT Devices · Business Consulting</div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-body">
+    <div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">🔒 Cybersecurity — SOC 24×7</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Meu time não monitora 24×7. Se cair, a produção para."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Nosso SOC detecta e responde em tempo real, sem equipe interna. Vale 20 min?"</div>
+  </div>
+</div>
+<div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">🖥️ IT Solutions — ITO + Cloud + Observabilidade</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"TI não cobre todos os turnos. Sistemas caem nos picos de produção."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Selbetti ITO: TI especializada 24×7 sem CLT. Observabilidade detecta falha antes de virar parada."</div>
+  </div>
+</div>
+<div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">📊 Data & AI — Interactive Intelligence</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Dados em silos. Decisões sem base confiável."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Interactive Intelligence: perguntas em linguagem natural, dados reais da operação, sem depender de TI."</div>
+  </div>
+</div>
+<div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">💼 Business Consulting — Outsourcing TI</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Preciso de especialistas para projeto crítico. CLT é lento e caro."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Alocação de profissionais de TI: recurso certo, projeto certo, tempo certo, sem CLT."</div>
+  </div>
+</div>
+    <div class="pitch-box">
+      <div class="pitch-hd" onclick="togPitch(this)">
+        <span class="pitch-label">🎯 Pitch unificado — CTO / Diretor de TI</span>
+        <span class="chev" style="color:var(--color-text-success)">▾</span>
+      </div>
+      <div class="pitch-body">
+        <div class="pitch-text">[Nome], você cuida de toda a infraestrutura tecnológica da planta — e provavelmente acumula três dores ao mesmo tempo: time que não monitora 24×7, sistemas que caem no pico de produção e dados que não chegam em tempo real para a decisão.<br><br>A Selbetti trabalha com indústrias do seu porte nas três frentes: nosso SOC garante segurança 24×7 sem você precisar de equipe interna; o Selbetti ITO cobre todos os turnos de TI com SLA garantido; e o Interactive Intelligence coloca inteligência sobre os seus dados de operação sem mexer nos seus sistemas atuais.<br><br>Não precisa resolver tudo de uma vez. Qual dessas dores está mais urgente pra você hoje? A gente começa por ela.</div>
+      </div>
+    </div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti pitch unificado — CTO / Diretor de TI — Decisor em: Cybersecurity · IT Solutions · IT Devices · Business Consulting')">Script unificado ↗</button>
+  </div>
+</div>
+<div class="pv-card">
+  <div class="pv-hd" onclick="togPV(this)">
+    <div class="pv-av">CFO</div>
+    <div class="pv-meta">
+      <div class="pv-name">CFO / Diretor Financeiro</div>
+      <div class="pv-subs">Decisor em: Cybersecurity · Process Solutions · IT Devices</div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-body">
+    <div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">🔒 Cybersecurity — ROI de segurança</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Não sei quanto custaria um incidente. Seguro exige evidências de controles."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Ransomware custa 3× mais do que a prevenção. Posso mostrar o custo de proteger versus remediar?"</div>
+  </div>
+</div>
+<div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">⚙️ Process Solutions — RPA Financeiro</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Conciliação bancária manual consome dias. Erros só aparecem no fechamento."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"RPA automatiza conciliação — zero digitação, erros em tempo real. Time para de conferir e começa a analisar."</div>
+  </div>
+</div>
+<div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">📱 IT Devices — Locação de Equipamentos</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Alto capex em equipamentos obsoletos. Manutenção consome TI."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Locação converte capex em opex — equipamento atualizado, manutenção inclusa."</div>
+  </div>
+</div>
+    <div class="pitch-box">
+      <div class="pitch-hd" onclick="togPitch(this)">
+        <span class="pitch-label">🎯 Pitch unificado — CFO / Diretor Financeiro</span>
+        <span class="chev" style="color:var(--color-text-success)">▾</span>
+      </div>
+      <div class="pitch-body">
+        <div class="pitch-text">[Nome], CFO de indústria geralmente tem três custos que crescem em silêncio: o risco financeiro de um incidente cibernético sem proteção adequada, o custo operacional de processos financeiros manuais — conciliação, cobrança, NF — e o capex pesado em equipamentos que ficam obsoletos.<br><br>A Selbetti endereça as três: nosso SOC protege a operação com custo previsível e evidências para o seguro; o RPA automatiza o back-office financeiro — a conciliação que hoje leva dias passa a rodar sozinha; e a locação de equipamentos transforma capex em opex mensal com manutenção inclusa.<br><br>Qual dessas frentes faz mais sentido discutir primeiro?</div>
+      </div>
+    </div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti pitch unificado — CFO / Diretor Financeiro — Decisor em: Cybersecurity · Process Solutions · IT Devices')">Script unificado ↗</button>
+  </div>
+</div>
+<div class="pv-card">
+  <div class="pv-hd" onclick="togPV(this)">
+    <div class="pv-av">CEO</div>
+    <div class="pv-meta">
+      <div class="pv-name">CEO / Diretor Industrial</div>
+      <div class="pv-subs">Decisor em: Data&AI · Business Consulting · Retail Experience (indústrias de consumo)</div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-body">
+    <div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">📊 Data & AI — Interactive Intelligence</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Tomo decisões com dados defasados. Não consigo cruzar vendas, estoque e produção em tempo real."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Interactive Intelligence: perguntas em linguagem natural, resposta com dados reais da operação."</div>
+  </div>
+</div>
+<div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">💼 Business Consulting — Processos</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Processos críticos ineficientes mas não tenho equipe para reestruturar sem parar o negócio."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"A Selbetti reestrutura processos críticos sem parar a operação, com gestão de mudança incluída."</div>
+  </div>
+</div>
+<div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">🏪 Retail Experience — Inteligência de Preços</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Não sei como meus produtos estão sendo precificados nos varejistas. Perco margem e posicionamento."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Nossa solução monitora suas SKUs em tempo real nos PDVs — você age antes de perder margem."</div>
+  </div>
+</div>
+    <div class="pitch-box">
+      <div class="pitch-hd" onclick="togPitch(this)">
+        <span class="pitch-label">🎯 Pitch unificado — CEO / Diretor Industrial</span>
+        <span class="chev" style="color:var(--color-text-success)">▾</span>
+      </div>
+      <div class="pitch-body">
+        <div class="pitch-text">[Nome], CEO de indústria normalmente enfrenta três desafios estratégicos ao mesmo tempo: tomar decisões com dados que chegam atrasados e fragmentados; processos operacionais que cresceram junto com a empresa mas nunca foram reestruturados; e, para quem vende para o varejo, a falta de visibilidade sobre como os produtos estão sendo precificados nas gôndolas.<br><br>A Selbetti trabalha nessas três frentes: o Interactive Intelligence coloca inteligência de dados na mão do seu time de gestão hoje; a consultoria de processos reestrutura o que precisa ser reestruturado sem parar a operação; e a inteligência de preços dá visibilidade real sobre o posicionamento dos seus produtos no varejo.<br><br>Qual dessas três está mais crítica para você agora?</div>
+      </div>
+    </div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti pitch unificado — CEO / Diretor Industrial — Decisor em: Data&AI · Business Consulting · Retail Experience (indústrias de consumo)')">Script unificado ↗</button>
+  </div>
+</div>
+<div class="pv-card">
+  <div class="pv-hd" onclick="togPV(this)">
+    <div class="pv-av">ADM</div>
+    <div class="pv-meta">
+      <div class="pv-name">Gerente Administrativo</div>
+      <div class="pv-subs">Decisor / Influenciador em: Process Solutions · IT Devices · Print Solutions</div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-body">
+    <div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">⚙️ Process Solutions — S-SIGN + ECM</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Contratos com fornecedores em papel. Arquivo físico enorme, difícil de consultar."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"S-SIGN: fornecedor assina pelo celular. ECM arquiva e indexa automaticamente."</div>
+  </div>
+</div>
+<div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">📱 IT Devices — Locação de Equipamentos</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Alto capex em equipamentos obsoletos. Manutenção consome TI."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Locação: equipamento sempre atualizado, manutenção inclusa, opex previsível."</div>
+  </div>
+</div>
+<div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">🖨️ Print Solutions — MPS</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Custo de impressão fora de controle. Não sei quanto cada área gasta."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"MPS: impressão em custo fixo por página, por departamento, sem surpresa."</div>
+  </div>
+</div>
+    <div class="pitch-box">
+      <div class="pitch-hd" onclick="togPitch(this)">
+        <span class="pitch-label">🎯 Pitch unificado — Gerente Administrativo</span>
+        <span class="chev" style="color:var(--color-text-success)">▾</span>
+      </div>
+      <div class="pitch-body">
+        <div class="pitch-text">[Nome], Gerente Administrativo de indústria normalmente carrega três dores operacionais ao mesmo tempo: contratos com fornecedores que ainda circulam em papel com risco de extravio; equipamentos que viram capex pesado e ficam obsoletos antes de amortizar; e custo de impressão que cresce sem controle e sem visibilidade por área.<br><br>A Selbetti resolve as três com contratos recorrentes: S-SIGN e ECM eliminam o papel dos contratos com validade jurídica; locação de equipamentos transforma capex em opex mensal com manutenção inclusa; e MPS torna o custo de impressão previsível por página, por departamento.<br><br>Qual dessas três está mais urgente na sua operação hoje?</div>
+      </div>
+    </div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti pitch unificado — Gerente Administrativo — Decisor / Influenciador em: Process Solutions · IT Devices · Print Solutions')">Script unificado ↗</button>
+  </div>
+</div>
+<div class="pv-card">
+  <div class="pv-hd" onclick="togPV(this)">
+    <div class="pv-av">TRD</div>
+    <div class="pv-meta">
+      <div class="pv-name">Gerente de Trade Marketing / Dir. Comercial</div>
+      <div class="pv-subs">Decisor em: Retail Experience (indústrias de alimentos, bebidas, ferramentas)</div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-body">
+    <div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">🏪 Retail Experience — Inteligência de Preços + Monitoria PDV</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Não sei se meus produtos estão sendo precificados corretamente nas gôndolas. Perco compliance de preço sugerido sem visibilidade."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Nossa solução monitora suas SKUs em tempo real nos PDVs dos seus clientes varejistas — você age antes de perder margem e posicionamento. Vale 20 min?"</div>
+  </div>
+</div>
+    <div class="pitch-box">
+      <div class="pitch-hd" onclick="togPitch(this)">
+        <span class="pitch-label">🎯 Pitch unificado — Gerente de Trade Marketing / Dir. Comercial</span>
+        <span class="chev" style="color:var(--color-text-success)">▾</span>
+      </div>
+      <div class="pitch-body">
+        <div class="pitch-text">[Nome], fabricantes que vendem para o varejo normalmente têm um ponto cego crítico: não sabem como seus produtos estão sendo precificados nas gôndolas dos clientes. Quando a distorção de preço aparece, já perdeu margem, posicionamento e às vezes o relacionamento com o varejista.<br><br>A Selbetti tem uma solução de inteligência de preços que monitora suas SKUs em tempo real nos PDVs — você vê compliance de preço sugerido, posicionamento versus concorrência e distorções antes que virem problema.<br><br>Vale 20 minutos para te mostrar como funciona?</div>
+      </div>
+    </div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti pitch unificado — Gerente de Trade Marketing / Dir. Comercial — Decisor em: Retail Experience (indústrias de alimentos, bebidas, ferramentas)')">Script unificado ↗</button>
+  </div>
+</div></div>
+</div><div id="seg-saude" class="seg-panel">
+  <div class="seg-desc">Hospitais, clínicas, laboratórios e operadoras · RJ, MG, SP · Cases: Fleury, Hermes Pardini</div>
+  <div class="view-toggle">
+    <div class="vt active" onclick="setView('saude','bu',this)">📦 Ver por Solução (BU)</div>
+    <div class="vt" onclick="setView('saude','p',this)">👤 Ver por Persona</div>
+  </div>
+  <div id="saude-bu" class="view-panel active"><div class="sol-block">
+  <div class="sol-hd" onclick="tog(this)">
+    <span class="sol-title">📊 Data & AI — Hawk, Interactive Intelligence, Quality Manager</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="sol-body"><div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">CFO</div>
+    <div class="p-meta">
+      <div class="p-name">CFO / Diretor Financeiro</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">também em: <span>também em: Process Sol. · Cybersecurity · IT Solutions</span></span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Perdemos 8–15% da receita em glosas não geridas. Faturamento manual e ciclo longo de recebimento."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Hawk</span><span class="tag">IA para glosas</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"O Hawk automatiza o ciclo de receitas e identifica glosas antes do envio. Atendemos Fleury e Hermes Pardini. Vale 20 min?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — CFO / Diretor Financeiro — Hawk')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">TI Hospitalar / Ger. de Sistemas</div>
+            <div class="inf-papel">Integração do Hawk com o sistema de faturamento (Tasy, MV, etc.). Papel crítico.</div>
+            <div class="inf-dica">💡 Mostre que o Hawk tem conectores nativos para os principais sistemas hospitalares brasileiros.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">FAT</div>
+          <div>
+            <div class="inf-name">Gerente de Faturamento</div>
+            <div class="inf-papel">Usuário final e validador. Precisa acreditar que a IA não vai criar mais trabalho.</div>
+            <div class="inf-dica">💡 Envolva o Ger. de Faturamento em uma demo técnica — ele vai virar campeão se ver o produto funcionando.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">CEO</div>
+          <div>
+            <div class="inf-name">CEO / Diretor Geral</div>
+            <div class="inf-papel">Em hospitais de médio porte, CEO participa de decisões com impacto financeiro significativo.</div>
+            <div class="inf-dica">💡 Use o argumento de recuperação de receita em % do faturamento para levar o tema ao CEO.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div>
+<div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">FAT</div>
+    <div class="p-meta">
+      <div class="p-name">Gerente de Faturamento</div>
+      <div class="p-role-row"><span class="rb rb-inf">Influenciador</span><span class="rb rb-usr">Usuário final</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Minha equipe lança manualmente e ainda recebe glosa. Não identifico o erro antes de enviar para a operadora."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Hawk</span><span class="tag">RPA faturamento</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Hawk identifica inconsistência no faturamento antes do envio — zerando glosa na origem. Posso mostrar como funciona no Hermes Pardini?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — Gerente de Faturamento — Hawk')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">CFO</div>
+          <div>
+            <div class="inf-name">CFO / Diretor Financeiro</div>
+            <div class="inf-papel">Decisor financeiro. O Ger. de Faturamento vai recomendar — o CFO vai aprovar.</div>
+            <div class="inf-dica">💡 Peça ao Ger. de Faturamento que leve o CFO na 2ª reunião com dados de glosa da própria instituição.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">TI Hospitalar</div>
+            <div class="inf-papel">Valida integração com o sistema de faturamento. Sem o OK do TI, o projeto não avança.</div>
+            <div class="inf-dica">💡 Proponha uma POC técnica rápida — resolve a objeção do TI antes que ela trave a venda.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div>
+<div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">CTO</div>
+    <div class="p-meta">
+      <div class="p-name">CTO / Diretor de Inovação</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">também em: <span>também em: IT Solutions · Cybersecurity · IT Devices</span></span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Temos dados clínicos valiosos mas não conseguimos usá-los para decisão. Médicos gastam tempo em burocracia."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Interactive Intelligence</span><span class="tag">MDM Saúde</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Interactive Intelligence: médicos e gestores fazem perguntas em linguagem natural sobre dados clínicos reais. Vale uma conversa?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — CTO / Diretor de Inovação — Interactive Intelligence')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">MED</div>
+          <div>
+            <div class="inf-name">Diretor Médico / Corpo Clínico</div>
+            <div class="inf-papel">Usuário final da IA clínica. Se os médicos não adotarem, o projeto falha mesmo aprovado.</div>
+            <div class="inf-dica">💡 Proponha piloto com grupo pequeno de médicos — cria champions internos.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">CFO</div>
+          <div>
+            <div class="inf-name">CFO / Diretor Financeiro</div>
+            <div class="inf-papel">Aprova o investimento. Precisa ver impacto em eficiência e redução de custos.</div>
+            <div class="inf-dica">💡 Conecte a IA clínica à redução de tempo médico em burocracia — quanto custa uma hora médica?</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="sol-block">
+  <div class="sol-hd" onclick="tog(this)">
+    <span class="sol-title">📞 Customer Experience — URA, Omnichannel, Discador, Telemedicina</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="sol-body"><div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">OPS</div>
+    <div class="p-meta">
+      <div class="p-name">Diretor de Operações</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"No-show alto queima caixa. Call center sobrecarregado e paciente vai para o concorrente."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">URA Inteligente</span><span class="tag">Discador Automático</span><span class="tag">Omnichannel</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Hospitais do seu porte reduzem no-show em até 40% com URA inteligente. Atendemos Fleury com isso. Vale 20 min?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — Diretor de Operações — URA Inteligente')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">TI Hospitalar</div>
+            <div class="inf-papel">Integração da URA com o sistema de agendamento (HIS/agenda médica). Papel técnico crítico.</div>
+            <div class="inf-dica">💡 Mostre integração nativa com os principais sistemas de agendamento — derruba a principal objeção do TI.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">CC</div>
+          <div>
+            <div class="inf-name">Gerente de Call Center</div>
+            <div class="inf-papel">Usuário direto e potencial campeão. Pode resistir se sentir ameaça ao seu papel.</div>
+            <div class="inf-dica">💡 Posicione a URA como apoio ao call center — time foca nos casos complexos.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">CFO</div>
+          <div>
+            <div class="inf-name">CFO / Diretor Financeiro</div>
+            <div class="inf-papel">Redução de no-show tem impacto direto na receita — argumento financeiro forte.</div>
+            <div class="inf-dica">💡 Calcule o impacto: % no-show × ticket médio × meses. Mostre ao CFO.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div>
+<div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">CC</div>
+    <div class="p-meta">
+      <div class="p-name">Gerente de Call Center / SAC</div>
+      <div class="p-role-row"><span class="rb rb-inf">Influenciador</span><span class="rb rb-usr">Usuário final</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Meu time atende a mesma pergunta centenas de vezes por dia. Qualidade varia e não consigo monitorar tudo."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Bots Atendimento</span><span class="tag">Monitoria com IA</span><span class="tag">URA</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Bots resolvem perguntas repetitivas e monitoria com IA avalia 100% dos atendimentos sem supervisor ouvindo cada ligação. Posso mostrar?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — Gerente de Call Center / SAC — Bots Atendimento')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">OPS</div>
+          <div>
+            <div class="inf-name">Diretor de Operações</div>
+            <div class="inf-papel">Decisor final. Ger. de CC recomenda, Dir. de Operações aprova.</div>
+            <div class="inf-dica">💡 Peça ao Ger. de CC que te apresente ao Dir. de Operações com dados de volume de chamadas.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">TI Hospitalar</div>
+            <div class="inf-papel">Integração do omnichannel com sistemas de agendamento e prontuário.</div>
+            <div class="inf-dica">💡 Mesmo argumento: integração nativa com sistemas hospitalares, sem alterar o HIS atual.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div>
+<div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">CX</div>
+    <div class="p-meta">
+      <div class="p-name">Diretor de Experiência do Paciente</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Paciente agenda por telefone, tira dúvida por WhatsApp e reclama por e-mail — tudo desconectado. Sem histórico centralizado."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Omnichannel</span><span class="tag">Videochamada</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Com omnichannel, todos os canais em uma tela — histórico unificado e atendimento consistente. Vale 20 min?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — Diretor de Experiência do Paciente — Omnichannel')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">TI Hospitalar</div>
+            <div class="inf-papel">Integração do omnichannel com o HIS e sistemas de prontuário. Papel obrigatório.</div>
+            <div class="inf-dica">💡 TI Hospitalar é influenciador em todas as soluções digitais — envolva cedo e de forma consultiva.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">MKT</div>
+          <div>
+            <div class="inf-name">Gerente de Marketing / Comunicação</div>
+            <div class="inf-papel">Em hospitais privados, Marketing tem influência sobre canais de atendimento.</div>
+            <div class="inf-dica">💡 Mencione comunicação personalizada por canal — abre conversa diferente com Marketing.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="sol-block">
+  <div class="sol-hd" onclick="tog(this)">
+    <span class="sol-title">⚙️ Process Solutions — ECM, S-SIGN, RPA, Cobrança Bancária</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="sol-body"><div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">ADM</div>
+    <div class="p-meta">
+      <div class="p-name">Diretor Administrativo</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Prontuários físicos se perdem. Digitalização manual é cara. Consentimentos ainda em papel."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">ECM</span><span class="tag">S-SIGN</span><span class="tag">Digitalização com IA</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"ECM digitaliza e indexa prontuários automaticamente. S-SIGN elimina papel nos consentimentos. Atendemos hospitais da sua regional. Vale 20 min?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — Diretor Administrativo — ECM')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">TI Hospitalar</div>
+            <div class="inf-papel">Integração do ECM com o HIS e prontuário eletrônico. Papel obrigatório.</div>
+            <div class="inf-dica">💡 Mostre conectores nativos com os principais HIS hospitalares brasileiros.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">JUR</div>
+          <div>
+            <div class="inf-name">Jurídico / Compliance</div>
+            <div class="inf-papel">Valida validade jurídica do S-SIGN para consentimentos de pacientes.</div>
+            <div class="inf-dica">💡 Leve documentação ICP-Brasil e exemplos de validade em ambientes hospitalares.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div>
+<div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">FIN</div>
+    <div class="p-meta">
+      <div class="p-name">Gerente Financeiro / Controller</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Cobrança de pacientes particulares é manual e inadimplência é alta. Conciliação bancária consome dias."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Sistema de Cobrança Bancária</span><span class="tag">RPA financeiro</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Sistema de cobrança automatiza toda a régua de pacientes particulares — reduz inadimplência e libera o time. Vale 20 min?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — Gerente Financeiro / Controller — Sistema de Cobrança Bancária')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">TI Hospitalar</div>
+            <div class="inf-papel">Integração com o sistema de faturamento e bancário. Papel técnico obrigatório.</div>
+            <div class="inf-dica">💡 Mostre que a solução não altera o sistema de faturamento existente — só adiciona camada de cobrança.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">CFO</div>
+          <div>
+            <div class="inf-name">CFO / Diretor Financeiro</div>
+            <div class="inf-papel">Decisor sênior. Ger. Financeiro recomenda — CFO aprova.</div>
+            <div class="inf-dica">💡 Peça ao Ger. Financeiro que leve o CFO na segunda reunião com dados de inadimplência atual.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="sol-block">
+  <div class="sol-hd" onclick="tog(this)">
+    <span class="sol-title">🏷️ Label Solutions — RFID Farmácia, Pulseiras, Etiquetas Lab</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="sol-body"><div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">FRM</div>
+    <div class="p-meta">
+      <div class="p-name">Farmacêutico-chefe</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rb rb-usr">Usuário final</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Inventário da farmácia leva dias e ainda tem erro. Medicamento vence na prateleira sem ninguém perceber."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">RFID Farmácia</span><span class="tag">Coletores</span><span class="tag">Impr. Térmicas</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"RFID em farmácia hospitalar reduz inventário de dias para minutos e elimina erro de dispensação. Posso mostrar como hospitais da sua regional fazem isso?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — Farmacêutico-chefe — RFID Farmácia')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">TI Hospitalar</div>
+            <div class="inf-papel">Integração do RFID com o sistema de gestão de farmácia. Principal bloqueador.</div>
+            <div class="inf-dica">💡 Apresente cases de integração com os principais sistemas de farmácia hospitalar brasileiros.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">ADM</div>
+          <div>
+            <div class="inf-name">Diretor Administrativo</div>
+            <div class="inf-papel">Aprova o investimento. RFID tem ROI claro — medicamento não vencido e inventário preciso.</div>
+            <div class="inf-dica">💡 Leve dados de custo de medicamentos vencidos e desvio de estoque sem RFID.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div>
+<div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">ENF</div>
+    <div class="p-meta">
+      <div class="p-name">Gerente de Enfermagem / Qualidade</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rb rb-usr">Usuário final</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Identificação errada de paciente é risco gravíssimo. Pulseira de papel rasga. Sem rastreio de procedimentos."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Impr. de Pulseiras</span><span class="tag">Etiquetas Lab</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Pulseira com código de barras elimina erro de identificação — é o padrão de acreditação. Posso te mostrar como funciona?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — Gerente de Enfermagem / Qualidade — Impr. de Pulseiras')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">TI Hospitalar</div>
+            <div class="inf-papel">Integração da impressora de pulseiras com o HIS na admissão de pacientes.</div>
+            <div class="inf-dica">💡 Mostre integração com admissão — impressão automática no check-in.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">QUA</div>
+          <div>
+            <div class="inf-name">Resp. pela Acreditação / Qualidade</div>
+            <div class="inf-papel">Pulseira é exigência de acreditação (Joint Commission, ONA). Aliado forte.</div>
+            <div class="inf-dica">💡 Mencione a exigência de acreditação — abre a venda por compliance, não só eficiência.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div>
+<div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">LAB</div>
+    <div class="p-meta">
+      <div class="p-name">Gerente de Laboratório</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rb rb-usr">Usuário final</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Etiquetagem manual de amostras gera erro de identificação. Preciso repetir coleta e atrasar laudo."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Impr. Térmicas Lab</span><span class="tag">Etiquetas Amostras</span><span class="tag">Coletores</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Etiquetagem automatizada na coleta rastreia do tubo ao laudo. Atendemos Fleury e Hermes Pardini. Vale 20 min?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — Gerente de Laboratório — Impr. Térmicas Lab')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">TI Hospitalar / LIS</div>
+            <div class="inf-papel">Integração com o LIS (Laboratory Information System). Cada lab tem um LIS diferente — principal objeção técnica.</div>
+            <div class="inf-dica">💡 Mapeie o LIS usado antes da reunião — leve documentação de integração específica.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">QUA</div>
+          <div>
+            <div class="inf-name">Resp. pela Qualidade / Acreditação</div>
+            <div class="inf-papel">Rastreabilidade de amostras é exigência de laboratórios acreditados. Aliado natural.</div>
+            <div class="inf-dica">💡 Inclua o responsável pela acreditação na reunião — reforça o argumento de conformidade.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="sol-block">
+  <div class="sol-hd" onclick="tog(this)">
+    <span class="sol-title">🔒 Cybersecurity Solutions — SOC, LGPD, Dados de Pacientes</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="sol-body"><div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">DPO</div>
+    <div class="p-meta">
+      <div class="p-name">DPO / Compliance</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rb rb-inf">Influenciador</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Dados de pacientes são sensíveis pela ANPD. Uma autuação pode ser multimilionária. Nunca mapeamos onde estão todos os dados."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">LGPD</span><span class="tag">SOC 24×7</span><span class="tag">Privacidade de Dados</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Dados clínicos são a categoria mais sensível da LGPD. Hospitais sem mapeamento têm passivo jurídico aberto agora. Posso mostrar como estruturamos em 20 min?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — DPO / Compliance — LGPD')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">CTO / TI Hospitalar</div>
+            <div class="inf-papel">Implementa o mapeamento técnico dos dados e integra o SOC ao ambiente. Papel obrigatório.</div>
+            <div class="inf-dica">💡 Proponha reunião DPO + TI desde o início — o mapeamento de dados exige os dois juntos.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">CEO</div>
+          <div>
+            <div class="inf-name">CEO / Diretor Geral</div>
+            <div class="inf-papel">Risco multimilionário de multa é assunto de CEO. O DPO pode abrir a porta para diretoria.</div>
+            <div class="inf-dica">💡 Peça ao DPO que apresente o risco ao CEO — urgência sobe de nível quando o CEO está envolvido.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">JUR</div>
+          <div>
+            <div class="inf-name">Jurídico / Advogado Interno</div>
+            <div class="inf-papel">Valida a conformidade jurídica da solução e o contrato de prestação de serviço.</div>
+            <div class="inf-dica">💡 Tenha documentação jurídica do SOC e LGPD pronta para o jurídico — acelera a aprovação contratual.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="sol-block">
+  <div class="sol-hd" onclick="tog(this)">
+    <span class="sol-title">📱 IT Devices — CFTV Hospitalar, Tablets Equipe, Portaria Virtual</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="sol-body"><div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">FAC</div>
+    <div class="p-meta">
+      <div class="p-name">Gerente de Facilities / Segurança</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Sem controle de acesso a áreas restritas — farmácia, UTI, berçário. CFTV antigo não grava com qualidade."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">CFTV Hospitalar</span><span class="tag">Controle de Acesso</span><span class="tag">Portaria Virtual</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Controle de acesso em áreas restritas e CFTV HD em toda unidade. Vale 20 min?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — Gerente de Facilities / Segurança — CFTV Hospitalar')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">TI Hospitalar</div>
+            <div class="inf-papel">Integração do CFTV e controle de acesso com a rede e o sistema de RH/crachás.</div>
+            <div class="inf-dica">💡 Apresente como integrado ao crachá e ao sistema de RH — evita infraestrutura duplicada.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">QUA</div>
+          <div>
+            <div class="inf-name">Resp. pela Acreditação</div>
+            <div class="inf-papel">Controle de acesso a áreas restritas é exigência de acreditação. Aliado natural.</div>
+            <div class="inf-dica">💡 Argumento de acreditação eleva a prioridade da compra.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div>
+<div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">TI</div>
+    <div class="p-meta">
+      <div class="p-name">TI Hospitalar</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rb rb-inf">Influenciador</span><span class="rec-tag">também em: <span>influencia: todas as soluções digitais</span></span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Equipe médica usa tablet pessoal para acessar prontuário. Risco de segurança e sem padrão de gestão."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Locação Tablets</span><span class="tag">Locação Smartphones</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Tablets corporativos para equipe médica — gestão centralizada, segurança de dados e opex mensal. Posso mostrar?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — TI Hospitalar — Locação Tablets')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">MED</div>
+          <div>
+            <div class="inf-name">Corpo Médico / Diretoria Médica</div>
+            <div class="inf-papel">Usuário final — precisa aceitar usar o tablet corporativo. Resistência ao device imposto é real.</div>
+            <div class="inf-dica">💡 Envolva um médico campeão na escolha do modelo — quando escolhido pelo médico, adoção é muito maior.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">CFO</div>
+          <div>
+            <div class="inf-name">CFO / Diretor Financeiro</div>
+            <div class="inf-papel">Aprova o contrato de locação. Opex versus capex é o argumento financeiro principal.</div>
+            <div class="inf-dica">💡 Compare o custo total de propriedade com a locação — diferença costuma ser expressiva.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="sol-block">
+  <div class="sol-hd" onclick="tog(this)">
+    <span class="sol-title">🖥️ IT Solutions — Cloud, Outsourcing TI, Observabilidade</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="sol-body"><div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">CTO</div>
+    <div class="p-meta">
+      <div class="p-name">CTO / TI Hospitalar</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">também em: <span>também em: Data&AI · Cybersecurity · IT Devices</span></span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"TI hospitalar não tem equipe para cobrir sistemas críticos 24×7. Prontuário eletrônico não pode cair."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Selbetti ITO</span><span class="tag">Selbetti Cloud</span><span class="tag">Observabilidade</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Selbetti ITO e Cloud garantem disponibilidade 24×7 para prontuário eletrônico e sistemas críticos com SLA documentado. Atendemos Fleury nessa solução. Vale 20 min?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — CTO / TI Hospitalar — Selbetti ITO')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">CFO</div>
+          <div>
+            <div class="inf-name">CFO / Diretor Financeiro</div>
+            <div class="inf-papel">Aprova o contrato de ITO. Precisa ver TCO versus equipe interna.</div>
+            <div class="inf-dica">💡 Compare custo de ITO com salário + encargos de equipe TI interna 24×7.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">CEO</div>
+          <div>
+            <div class="inf-name">CEO / Diretor Geral</div>
+            <div class="inf-papel">Sistema crítico caindo é risco assistencial e reputacional.</div>
+            <div class="inf-dica">💡 Indisponibilidade do prontuário eletrônico é argumento que chega direto ao CEO.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div>
+<div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">ADM</div>
+    <div class="p-meta">
+      <div class="p-name">Diretor Administrativo</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">também em: <span>também em: Process Sol. · Label Sol. · Print Sol.</span></span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"TI terceirizada sem SLA claro. Quando um sistema cai fora do horário comercial, ninguém atende."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Selbetti ITO</span><span class="tag">Selbetti Observabilidade</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Selbetti ITO com SLA garantido 24×7 e observabilidade que detecta falha antes de virar parada. Quer ver como funciona em hospitais da região?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — Diretor Administrativo — Selbetti ITO')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">TI Hospitalar</div>
+            <div class="inf-papel">Usuário direto do ITO. Pode ver como ameaça ou como apoio ao time.</div>
+            <div class="inf-dica">💡 Posicione o ITO como reforço ao time de TI hospitalar — não substituição.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="sol-block">
+  <div class="sol-hd" onclick="tog(this)">
+    <span class="sol-title">🖨️ Print Solutions — MPS, Digitalização Hospitalar</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="sol-body"><div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">ADM</div>
+    <div class="p-meta">
+      <div class="p-name">Diretor Administrativo / Comprador</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">também em: <span>também em: IT Solutions · Process Sol. · Label Sol.</span></span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Impressoras espalhadas pela unidade sem controle. Custo por página desconhecido e manutenção sempre na hora errada."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">MPS</span><span class="tag">Multifuncionais</span><span class="tag">Gestão Impressão</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"MPS centraliza a gestão de todas as impressoras da unidade — custo fixo por página, por setor, manutenção inclusa. Posso te mostrar quanto economizaria?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — Diretor Administrativo / Comprador — MPS')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">TI Hospitalar</div>
+            <div class="inf-papel">Integração do MPS com a rede e o sistema de autenticação de usuários.</div>
+            <div class="inf-dica">💡 MPS tem integração com Active Directory — argumento técnico que facilita o OK do TI.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="sol-block">
+  <div class="sol-hd" onclick="tog(this)">
+    <span class="sol-title">💼 Business Consulting — Consultoria em Processos, Projetos, Outsourcing TI</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="sol-body"><div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">CEO</div>
+    <div class="p-meta">
+      <div class="p-name">CEO / Diretor Geral</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Precisamos reestruturar processos administrativos e clínicos mas não temos equipe para conduzir o projeto."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Consultoria em Processos</span><span class="tag">Gestão de Projetos</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"A Selbetti mapeia e reestrutura processos hospitalares com gestão de mudança incluída — sem parar a operação. Atendemos hospitais e operadoras. Vale 20 min?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — CEO / Diretor Geral — Consultoria em Processos')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">CFO</div>
+          <div>
+            <div class="inf-name">CFO / Diretor Financeiro</div>
+            <div class="inf-papel">Aprova o investimento em consultoria. Precisa ver ROI e prazo de retorno.</div>
+            <div class="inf-dica">💡 Conecte a consultoria a resultados financeiros mensuráveis.</div>
+          </div>
+        </div><div class="inf-row">
+          <div class="inf-av">OPS</div>
+          <div>
+            <div class="inf-name">Diretor de Operações</div>
+            <div class="inf-papel">Executa a mudança operacional. Precisa acreditar no método e no time da Selbetti.</div>
+            <div class="inf-dica">💡 Inclua o Dir. de Operações no diagnóstico — ele vai validar ou rejeitar o projeto.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div>
+<div class="p-card">
+  <div class="p-hd" onclick="togP(this)">
+    <div class="p-av">CTO</div>
+    <div class="p-meta">
+      <div class="p-name">CTO / TI Hospitalar</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">também em: <span>também em: IT Solutions · Data&AI · Cybersecurity</span></span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Precisamos de especialistas em TI hospitalar para projetos específicos mas o mercado é escasso e caro para CLT."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Outsourcing TI</span><span class="tag">Alocação Profissionais</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Alocação de profissionais de TI especializados em saúde — recurso certo, projeto certo, tempo certo, sem CLT. Posso te mostrar?"</div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti — CTO / TI Hospitalar — Outsourcing TI')">Gerar script ↗</button>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togI(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body"><div class="inf-row">
+          <div class="inf-av">CFO</div>
+          <div>
+            <div class="inf-name">CFO / Diretor Financeiro</div>
+            <div class="inf-papel">Aprova o contrato de alocação. Custo mensal fixo versus risco de contratação CLT.</div>
+            <div class="inf-dica">💡 Compare o custo de alocação com CLT + encargos + tempo de contratação.</div>
+          </div>
+        </div></div>
+    </div>
+  </div>
+</div></div>
+</div></div>
+  <div id="saude-p" class="view-panel"><div class="pv-card">
+  <div class="pv-hd" onclick="togPV(this)">
+    <div class="pv-av">CFO</div>
+    <div class="pv-meta">
+      <div class="pv-name">CFO / Diretor Financeiro</div>
+      <div class="pv-subs">Decisor em: Data&AI (Hawk) · Process Sol. · Cybersecurity · IT Solutions</div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-body">
+    <div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">📊 Data & AI — Hawk</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"8–15% da receita em glosas não geridas. Faturamento manual e ciclo longo."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Hawk identifica glosa antes do envio — zerando na origem. Atendemos Fleury e Hermes Pardini."</div>
+  </div>
+</div>
+<div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">⚙️ Process Solutions — Cobrança Bancária</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Cobrança de pacientes particulares manual. Inadimplência alta."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Régua de cobrança automatizada — inadimplência cai e time para de ligar atrás de boleto."</div>
+  </div>
+</div>
+<div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">🔒 Cybersecurity — LGPD / Risco ANPD</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Dados de pacientes expostos a risco multimilionário de autuação."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Dados clínicos são a categoria mais sensível da LGPD — passivo jurídico aberto agora."</div>
+  </div>
+</div>
+<div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">🖥️ IT Solutions — Cloud + ITO</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Sistemas críticos sem SLA de disponibilidade 24×7."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"ITO e Cloud: disponibilidade 24×7 para sistemas críticos com SLA documentado."</div>
+  </div>
+</div>
+    <div class="pitch-box">
+      <div class="pitch-hd" onclick="togPitch(this)">
+        <span class="pitch-label">🎯 Pitch unificado — CFO / Diretor Financeiro</span>
+        <span class="chev" style="color:var(--color-text-success)">▾</span>
+      </div>
+      <div class="pitch-body">
+        <div class="pitch-text">[Nome], CFO de hospital geralmente convive com quatro pressões financeiras ao mesmo tempo: glosas que corroem 8 a 15% da receita sem visibilidade; inadimplência de pacientes particulares sem régua de cobrança automatizada; risco de multa milionária da ANPD por dados de pacientes sem mapeamento; e sistemas críticos rodando sem SLA formal de disponibilidade.<br><br>A Selbetti endereça todas as quatro: o Hawk recupera receita perdida em glosas identificando inconsistências antes do envio para a operadora; o sistema de cobrança bancária automatiza a régua de particulares e reduz inadimplência; nosso serviço de LGPD mapeia e protege os dados de pacientes; e o Selbetti Cloud garante disponibilidade 24×7 com SLA documentado.<br><br>Qual dessas quatro está mais crítica para você agora?</div>
+      </div>
+    </div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti pitch unificado — CFO / Diretor Financeiro — Decisor em: Data&AI (Hawk) · Process Sol. · Cybersecurity · IT Solutions')">Script unificado ↗</button>
+  </div>
+</div>
+<div class="pv-card">
+  <div class="pv-hd" onclick="togPV(this)">
+    <div class="pv-av">CTO</div>
+    <div class="pv-meta">
+      <div class="pv-name">CTO / TI Hospitalar</div>
+      <div class="pv-subs">Decisor em: IT Solutions · Business Consulting · Data&AI · IT Devices — Influenciador em: todas as soluções digitais</div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-body">
+    <div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">🖥️ IT Solutions — ITO + Cloud + Observabilidade</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"TI hospitalar não tem equipe para cobrir sistemas críticos 24×7."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"ITO e Cloud: disponibilidade 24×7 para prontuário eletrônico e sistemas críticos com SLA."</div>
+  </div>
+</div>
+<div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">📊 Data & AI — Interactive Intelligence</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Dados clínicos valiosos que não conseguimos usar para decisão."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"IA sobre dados clínicos em linguagem natural — sem alterar os sistemas existentes."</div>
+  </div>
+</div>
+<div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">📱 IT Devices — Tablets para Equipe Médica</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Equipe médica usa celular pessoal. Risco de segurança e sem gestão centralizada."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Tablets corporativos: gestão centralizada, segurança de dados, opex mensal."</div>
+  </div>
+</div>
+<div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">💼 Business Consulting — Outsourcing TI Hospitalar</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Precisamos de especialistas em TI hospitalar para projetos críticos."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Alocação de profissionais de TI em saúde — recurso certo, projeto certo, sem CLT."</div>
+  </div>
+</div>
+    <div class="pitch-box">
+      <div class="pitch-hd" onclick="togPitch(this)">
+        <span class="pitch-label">🎯 Pitch unificado — CTO / TI Hospitalar</span>
+        <span class="chev" style="color:var(--color-text-success)">▾</span>
+      </div>
+      <div class="pitch-body">
+        <div class="pitch-text">[Nome], TI hospitalar normalmente acumula desafios que não existem em outras verticais: sistemas críticos que não podem cair, dados clínicos que precisam estar disponíveis e protegidos ao mesmo tempo, equipe médica resistente a qualquer mudança de dispositivo e uma demanda por especialistas de TI em saúde que o mercado não supre em CLT.<br><br>A Selbetti trabalha nessas quatro frentes: ITO e Cloud garantem disponibilidade 24×7 com SLA; Interactive Intelligence coloca IA sobre os dados clínicos sem mexer nos sistemas atuais; tablets corporativos resolvem a questão de segurança e gestão de dispositivos da equipe médica; e alocação de profissionais de TI em saúde cobre os projetos críticos sem o risco de contratação CLT.<br><br>Qual dessas frentes está mais urgente para você agora?</div>
+      </div>
+    </div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti pitch unificado — CTO / TI Hospitalar — Decisor em: IT Solutions · Business Consulting · Data&AI · IT Devices — Influenciador em: todas as soluções digitais')">Script unificado ↗</button>
+  </div>
+</div>
+<div class="pv-card">
+  <div class="pv-hd" onclick="togPV(this)">
+    <div class="pv-av">ADM</div>
+    <div class="pv-meta">
+      <div class="pv-name">Diretor Administrativo</div>
+      <div class="pv-subs">Decisor em: Process Solutions · IT Solutions · Label Solutions · Print Solutions</div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-body">
+    <div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">⚙️ Process Solutions — ECM + S-SIGN</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Prontuários físicos se perdem. Digitalização manual cara. Consentimentos em papel."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"ECM digitaliza e indexa automaticamente. S-SIGN elimina papel nos consentimentos."</div>
+  </div>
+</div>
+<div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">🖥️ IT Solutions — ITO com SLA</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"TI terceirizada sem SLA claro. Quando cai fora do horário, ninguém atende."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"ITO com SLA garantido 24×7 e observabilidade que detecta falha antes de virar parada."</div>
+  </div>
+</div>
+<div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">🏷️ Label Solutions — RFID Farmácia</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Medicamentos vencem na prateleira sem rastreio. Desvio de estoque sem evidência."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"RFID em farmácia: inventário em minutos, medicamento rastreado, desvio detectado."</div>
+  </div>
+</div>
+<div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">🖨️ Print Solutions — MPS</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Impressoras sem controle. Custo desconhecido por setor."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"MPS: custo fixo por página, por setor, manutenção inclusa."</div>
+  </div>
+</div>
+    <div class="pitch-box">
+      <div class="pitch-hd" onclick="togPitch(this)">
+        <span class="pitch-label">🎯 Pitch unificado — Diretor Administrativo</span>
+        <span class="chev" style="color:var(--color-text-success)">▾</span>
+      </div>
+      <div class="pitch-body">
+        <div class="pitch-text">[Nome], Diretor Administrativo de hospital normalmente gerencia quatro fontes de ineficiência operacional ao mesmo tempo: documentos físicos que se perdem e processos manuais de consentimento que travam o fluxo de atendimento; TI terceirizada sem SLA claro que some fora do horário comercial; farmácia com inventário lento e desvio de medicamentos sem evidência; e custo de impressão crescendo sem visibilidade por setor.<br><br>A Selbetti endereça as quatro: ECM e S-SIGN eliminam papel na documentação clínica e administrativa; ITO com SLA garante suporte 24×7 com resposta contratual; RFID na farmácia reduz inventário de dias para minutos e rastreia medicamento do estoque à dispensação; e MPS transforma impressão em custo fixo por página por setor.<br><br>Qual dessas quatro está mais urgente na sua unidade agora?</div>
+      </div>
+    </div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti pitch unificado — Diretor Administrativo — Decisor em: Process Solutions · IT Solutions · Label Solutions · Print Solutions')">Script unificado ↗</button>
+  </div>
+</div>
+<div class="pv-card">
+  <div class="pv-hd" onclick="togPV(this)">
+    <div class="pv-av">DPO</div>
+    <div class="pv-meta">
+      <div class="pv-name">DPO / Compliance</div>
+      <div class="pv-subs">Decisor em: Cybersecurity — Influenciador em: Data&AI · IT Solutions</div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-body">
+    <div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">🔒 Cybersecurity — LGPD + SOC</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Dados de pacientes sem mapeamento. Passivo jurídico aberto — autuação ANPD pode ser multimilionária."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"Dados clínicos são a categoria mais sensível da LGPD. Posso mostrar como estruturamos mapeamento e proteção em 20 min?"</div>
+  </div>
+</div>
+    <div class="pitch-box">
+      <div class="pitch-hd" onclick="togPitch(this)">
+        <span class="pitch-label">🎯 Pitch unificado — DPO / Compliance</span>
+        <span class="chev" style="color:var(--color-text-success)">▾</span>
+      </div>
+      <div class="pitch-body">
+        <div class="pitch-text">[Nome], hospitais armazenam a categoria de dados mais sensível da LGPD — dados clínicos de pacientes. Uma autuação da ANPD pode chegar a 2% do faturamento anual, e o regulador está aumentando o escrutínio sobre a saúde.<br><br>A Selbetti tem um processo estruturado para mapear, classificar e proteger os dados de pacientes — com SOC 24×7 monitorando o ambiente e entregando evidências de controle que o jurídico e os auditores precisam ver.<br><br>Quanto tempo sua instituição ainda vai conviver com esse passivo jurídico aberto? Posso mostrar como estruturamos isso em outras instituições de saúde em 20 minutos.</div>
+      </div>
+    </div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti pitch unificado — DPO / Compliance — Decisor em: Cybersecurity — Influenciador em: Data&AI · IT Solutions')">Script unificado ↗</button>
+  </div>
+</div>
+<div class="pv-card">
+  <div class="pv-hd" onclick="togPV(this)">
+    <div class="pv-av">OPS</div>
+    <div class="pv-meta">
+      <div class="pv-name">Diretor de Operações</div>
+      <div class="pv-subs">Decisor em: Customer Experience — Influenciador em: IT Solutions · Business Consulting</div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-body">
+    <div class="pv-sol">
+  <div class="pv-sol-hd" onclick="togPVS(this)">
+    <span class="pv-sol-title">📞 Customer Experience — URA + Omnichannel + Discador</span>
+    <span class="chev">▾</span>
+  </div>
+  <div class="pv-sol-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"No-show alto queima caixa. Call center sobrecarregado. Paciente vai para o concorrente."</div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"URA inteligente reduz no-show em até 40%. Atendemos Fleury. Vale 20 min?"</div>
+  </div>
+</div>
+    <div class="pitch-box">
+      <div class="pitch-hd" onclick="togPitch(this)">
+        <span class="pitch-label">🎯 Pitch unificado — Diretor de Operações</span>
+        <span class="chev" style="color:var(--color-text-success)">▾</span>
+      </div>
+      <div class="pitch-body">
+        <div class="pitch-text">[Nome], operação hospitalar tem uma equação difícil: no-show alto queima receita de consultas e procedimentos; call center sobrecarregado que não consegue fazer confirmações proativas; e paciente que não consegue atendimento vai para o concorrente sem dar uma segunda chance.<br><br>Nossa URA inteligente resolve os três ao mesmo tempo: confirma consultas automaticamente e reduz no-show em até 40%; libera o call center para casos complexos; e o paciente tem múltiplos canais de contato — voz, WhatsApp, chat — todos integrados em uma tela só.<br><br>Atendemos Fleury e Hermes Pardini com essa solução. Vale 20 minutos para te mostrar como funciona?</div>
+      </div>
+    </div>
+    <button class="abtn" onclick="sendPrompt('Script cold call BDR Selbetti pitch unificado — Diretor de Operações — Decisor em: Customer Experience — Influenciador em: IT Solutions · Business Consulting')">Script unificado ↗</button>
+  </div>
+</div></div>
+</div><div id="seg-varejo" class="seg-panel">
+  <div class="seg-desc">Supermercados, farmácias, vestuário, home center, e-commerce · NE, SC, SP · Case: Leroy Merlin</div>
+  <div class="placeholder-msg">
+    <div class="ph-icon">🔧</div>
+    <div class="ph-title">Segmento em construção</div>
+    <div class="ph-sub">O conteúdo de <strong>🛒 Varejo</strong> será adicionado na próxima versão da matriz.</div>
+  </div>
+</div><div id="seg-distribuicao" class="seg-panel">
+  <div class="seg-desc">Centros de distribuição, operadores logísticos, atacado distribuidor · NE, SP · Case: DHL</div>
+  <div class="placeholder-msg">
+    <div class="ph-icon">🔧</div>
+    <div class="ph-title">Segmento em construção</div>
+    <div class="ph-sub">O conteúdo de <strong>🚛 Distribuição & Logística</strong> será adicionado na próxima versão da matriz.</div>
+  </div>
+</div><div id="seg-servicos" class="seg-panel">
+  <div class="seg-desc">Consultorias, escritórios de advocacia, RH, facilities, saúde corporativa · SP, RJ</div>
+  <div class="placeholder-msg">
+    <div class="ph-icon">🔧</div>
+    <div class="ph-title">Segmento em construção</div>
+    <div class="ph-sub">O conteúdo de <strong>🏢 Serviços Corporativos</strong> será adicionado na próxima versão da matriz.</div>
+  </div>
+</div><div id="seg-agronegocio" class="seg-panel">
+  <div class="seg-desc">Cooperativas, tradings, produtores rurais, agroindústria · PR, RS · Case: Oro Agri</div>
+  <div class="placeholder-msg">
+    <div class="ph-icon">🔧</div>
+    <div class="ph-title">Segmento em construção</div>
+    <div class="ph-sub">O conteúdo de <strong>🌾 Agronegócio</strong> será adicionado na próxima versão da matriz.</div>
+  </div>
+</div><div id="seg-educacao" class="seg-panel">
+  <div class="seg-desc">Universidades, faculdades, escolas técnicas, EdTechs · SP, RJ, MG e demais regionais</div>
+  <div class="placeholder-msg">
+    <div class="ph-icon">🔧</div>
+    <div class="ph-title">Segmento em construção</div>
+    <div class="ph-sub">O conteúdo de <strong>🎓 Educação</strong> será adicionado na próxima versão da matriz.</div>
+  </div>
+</div><div id="seg-financeiro" class="seg-panel">
+  <div class="seg-desc">Bancos, fintechs, seguradoras, gestoras de ativos, cooperativas de crédito · Case: Ailos, Seguros Unimed</div>
+  <div class="placeholder-msg">
+    <div class="ph-icon">🔧</div>
+    <div class="ph-title">Segmento em construção</div>
+    <div class="ph-sub">O conteúdo de <strong>💰 Financeiro</strong> será adicionado na próxima versão da matriz.</div>
+  </div>
+</div>
+
+<div class="app-footer">
+  Selbetti Tecnologia S.A. · Matriz BDR Cross-BU v2.0 · Uso interno · July 2026
+</div>
+
+</div>
+<script>
+function setSeg(id){
+  document.querySelectorAll('.sn').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.seg-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('seg-'+id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function setView(seg,v,el){
+  const panel=document.getElementById('seg-'+seg);
+  panel.querySelectorAll('.vt').forEach(t=>t.classList.remove('active'));
+  panel.querySelectorAll('.view-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById(seg+'-'+v).classList.add('active');
+  el.classList.add('active');
+}
+function togAny(hd){
+  if(event) event.stopPropagation();
+  var b=hd.nextElementSibling;
+  if(!b) return;
+  var o=b.classList.toggle('open');
+  hd.querySelectorAll('.chev').forEach(function(ic){ic.classList.toggle('open',o);});
+}
+var tog=togAny,togP=togAny,togI=togAny,togPV=togAny,togPVS=togAny,togPitch=togAny;
+function sendPrompt(txt){
+  var toast=document.getElementById('toast');
+  navigator.clipboard.writeText(txt).then(function(){
+    toast.textContent='Copiado! Cole no chat do Claude para gerar o script.';
+    toast.classList.add('show');
+    setTimeout(function(){toast.classList.remove('show');},3000);
+  }).catch(function(){
+    prompt('Copie e cole no chat do Claude:',txt);
+  });
+}
+</script>
+</body>
+</html>
