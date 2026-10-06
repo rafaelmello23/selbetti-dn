@@ -102,6 +102,42 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 
 .script-hint{margin-top:8px;padding:8px 10px;background:#f0f7f3;border-radius:6px;border-left:3px solid #1f6b4a;font-size:10px;color:#555552;line-height:1.6}
 .script-hint strong{color:#1f6b4a}
+
+
+.bu-guide-title{font-size:13px;font-weight:600;color:#1f6b4a;margin-bottom:16px;padding:0 4px}
+.bu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.bu-card{background:#fff;border:1px solid #e4e4e0;border-radius:10px;overflow:hidden}
+.bu-card-hd{display:flex;align-items:center;gap:8px;padding:10px 14px;cursor:pointer;user-select:none}
+.bu-card-hd:hover{background:#f6f6f4}
+.bu-card-title{font-size:12px;font-weight:500;color:#1a1a18;flex:1}
+.bu-card-body{display:none;padding:10px 14px;border-top:1px solid #e4e4e0;font-size:11px;color:#444441;line-height:1.7}
+.bu-card-body.open{display:block}
+.bu-card-body .bu-dor{color:#c0392b;margin-bottom:6px;font-style:italic}
+.bu-card-body .bu-sol{margin-bottom:6px}
+.bu-card-body .bu-case{color:#1f6b4a;font-style:italic;margin-top:6px;padding-top:6px;border-top:1px solid #e4e4e0}
+.bu-card-body .bu-label{font-size:9px;text-transform:uppercase;letter-spacing:.06em;color:#aaa;margin-bottom:3px}
+
+.bu-guide{background:#f0f7f3;border-top:2px solid #1f6b4a;padding:28px 0 36px}
+.bu-guide-title{font-size:13px;font-weight:600;color:#1f6b4a;margin-bottom:4px;padding:0 4px}
+.bu-guide-sub{font-size:11px;color:#888780;margin-bottom:16px;padding:0 4px}
+.bu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:10px}
+.bu-card{background:#fff;border:1px solid #d6ead6;border-radius:10px;overflow:hidden}
+.bu-card-hd{display:flex;align-items:flex-start;gap:8px;padding:11px 14px;cursor:pointer;user-select:none;background:#fff}
+.bu-card-hd:hover{background:#f6f6f4}
+.bu-card-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.bu-card-meta{flex:1;min-width:0}
+.bu-card-title{font-size:12px;font-weight:600;color:#1a1a18;line-height:1.3}
+.bu-card-subtitle{font-size:10px;color:#888780;margin-top:2px;line-height:1.4}
+.bu-card-body{display:none;padding:12px 14px;border-top:1px solid #e4e4e0;font-size:11px;color:#444441;line-height:1.7}
+.bu-card-body.open{display:block}
+.bu-section-label{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#888780;margin-top:10px;margin-bottom:3px}
+.bu-section-label:first-child{margin-top:0}
+.bu-pitch{color:#1a1a18;font-style:italic;line-height:1.6;padding:6px 10px;background:#f6f6f4;border-radius:5px;border-left:3px solid #1f6b4a}
+.bu-products{color:#555552;line-height:1.6}
+.bu-trigger{color:#1a5c35;line-height:1.6}
+.bu-anti{color:#c0392b;line-height:1.6}
+.bu-case-ref{color:#1f6b4a;font-style:italic;padding:6px 10px;background:#f0f7f3;border-radius:5px;border-left:3px solid #a8ddc0;margin-top:8px}
+.bu-cta{display:inline-block;margin-top:8px;font-size:10px;padding:4px 10px;border-radius:6px;background:#1f6b4a;color:#fff;font-style:italic}
 </style>
 </head>
 <body>
@@ -616,9 +652,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="lbl">Dor</div>
     <div class="dor">"Não sei se meus produtos estão sendo precificados corretamente nas gôndolas dos varejistas. Perco compliance de preço sugerido sem saber."</div>
     <div class="lbl">Soluções</div>
-    <div class="tags"><span class="tag">Inteligência de Preços</span><span class="tag">Monitoria de Preços PDV</span></div>
+    <div class="tags"><span class="tag">Eiprice — Inteligência de Preços</span><span class="tag">Monitoria de Preços PDV</span><span class="tag">Pricefy — Comunicação de Preços</span></div>
     <div class="lbl">Gancho</div>
-    <div class="gancho">"Fabricantes do seu porte perdem compliance de preço sugerido sem visibilidade nenhuma. Nossa solução monitora suas SKUs em tempo real nos PDVs dos varejistas. Vale 20 min?"</div>
+    <div class="gancho">"Fabricantes do seu porte perdem compliance de preço sugerido sem saber — quando descobrem a distorção, já perderam margem e posicionamento. O Eiprice monitora suas SKUs em tempo real nos PDVs dos varejistas e na concorrência, para você agir antes de perder. Vale 20 min?"</div>
     <div class="inf-card">
       <div class="inf-hd" onclick="togI(this)">
         <span class="inf-label">⚡ Influenciadores nesta venda</span>
@@ -655,9 +691,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="lbl">Dor</div>
     <div class="dor">"Não tenho como monitorar se os varejistas respeitam o preço sugerido. Quando descubro a distorção, já perdeu margem e posicionamento."</div>
     <div class="lbl">Soluções</div>
-    <div class="tags"><span class="tag">Inteligência de Preços</span><span class="tag">Gestão de Ofertas</span></div>
+    <div class="tags"><span class="tag">Eiprice — Inteligência de Preços</span><span class="tag">Gestão de Ofertas</span><span class="tag">Pricefy — Comunicação de Preços</span></div>
     <div class="lbl">Gancho</div>
-    <div class="gancho">"Nossa solução monitora o preço dos seus produtos em tempo real nos PDVs dos clientes varejistas — você age antes de perder margem e posicionamento. Vale 20 min?"</div>
+    <div class="gancho">"O Eiprice monitora o preço dos seus produtos em tempo real nos PDVs dos varejistas e na concorrência — você age antes de perder margem e posicionamento, com dados estruturados, não por feeling. Vale 20 min?"</div>
     <div class="inf-card">
       <div class="inf-hd" onclick="togI(this)">
         <span class="inf-label">⚡ Influenciadores nesta venda</span>
@@ -702,7 +738,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="lbl">Soluções</div>
     <div class="tags"><span class="tag">Interactive Intelligence</span><span class="tag">MDM</span></div>
     <div class="lbl">Gancho</div>
-    <div class="gancho">"Com Interactive Intelligence, qualquer pessoa faz perguntas em linguagem natural e recebe resposta com dados reais da operação — sem depender de TI. Vale 20 min?"</div>
+    <div class="gancho">"Com Interactive Intelligence, qualquer pessoa faz perguntas em linguagem natural e recebe resposta com dados reais da operação — sem depender de TI. Somos parceiros certificados Databricks com +40 especialistas. Vale 20 min?"</div>
     <div class="inf-card">
       <div class="inf-hd" onclick="togI(this)">
         <span class="inf-label">⚡ Influenciadores nesta venda</span>
@@ -849,7 +885,49 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     </div>
   </div>
 </div></div>
-</div>
+
+<div class="p-card">
+  <div class="p-hd" onclick="togAny(this)">
+    <div class="p-av">CFO</div>
+    <div class="p-meta">
+      <div class="p-name">CFO / Gerente Administrativo / Ger. de TI</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">Guiando — Gestão de Telecom</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Pago faturas de telecom todo mês sem saber se estou sendo cobrado corretamente. Não tenho visibilidade de quanto cada área consome e não consigo identificar planos obsoletos ou cobranças indevidas."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Guiando TEM</span><span class="tag">Auditoria de Faturas</span><span class="tag">Gestão de Ativos Telecom</span><span class="tag">BPO Telecom</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"O Grupo Boticário economizou mais de R$15MM em despesas de telecom com a Guiando — auditando cobranças indevidas e eliminando planos obsoletos. Empresas do seu porte normalmente têm entre 10% e 20% de desperdício nas faturas de telecom sem saber. Vale 20 min para mostrar como identificamos isso?"</div>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togAny(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body">
+        <div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">Gerente de TI / Telecom</div>
+            <div class="inf-papel">Gestiona os ativos de telecom no dia a dia. Valida a integração da Guiando com o ERP e os sistemas internos.</div>
+            <div class="inf-dica">💡 Envolva o Ger. de TI desde o início — ele conhece os contratos e valida a acuracidade do inventário. Aliado forte quando percebe o volume de trabalho manual que a Guiando elimina.</div>
+          </div>
+        </div>
+        <div class="inf-row">
+          <div class="inf-av">ADM</div>
+          <div>
+            <div class="inf-name">Gerente Administrativo / Controller</div>
+            <div class="inf-papel">Responsável pelo contas a pagar e pela conciliação das faturas de telecom. Usuário direto da plataforma.</div>
+            <div class="inf-dica">💡 O Ger. Adm. é o que mais sofre com o processo manual. Mostre o antes e depois da automação — ele vira campeão interno e leva o CFO.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div>
 <div class="sol-block">
   <div class="sol-hd" onclick="tog(this)">
     <span class="sol-title">🖨️ Print Solutions — MPS, Plotters, Digitalização</span>
@@ -938,7 +1016,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="lbl">Dor</div>
     <div class="dor">"Processos críticos da operação são ineficientes mas não tenho equipe para mapear e reestruturar sem parar o negócio."</div>
     <div class="lbl">Soluções</div>
-    <div class="tags"><span class="tag">Consultoria em Processos</span><span class="tag">Gestão de Mudança</span></div>
+    <div class="tags"><span class="tag">Consultoria em Processos</span><span class="tag">BPMO</span><span class="tag">Gestão de Mudança</span><span class="tag">ERP/CRM</span></div>
     <div class="lbl">Gancho</div>
     <div class="gancho">"A Selbetti mapeia e reestrutura processos críticos sem parar a operação — com gestão de mudança incluída. Atendemos indústrias do seu porte nessa jornada. Vale 20 min?"</div>
     <div class="inf-card">
@@ -977,7 +1055,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="lbl">Dor</div>
     <div class="dor">"Preciso de especialistas em TI para um projeto crítico mas contratar CLT é lento e caro. Projeto não pode esperar."</div>
     <div class="lbl">Soluções</div>
-    <div class="tags"><span class="tag">Outsourcing TI</span><span class="tag">Alocação de Profissionais</span><span class="tag">BPO</span></div>
+    <div class="tags"><span class="tag">Outsourcing GP / TI</span><span class="tag">Alocação de Profissionais</span><span class="tag">CIO as a Service</span></div>
     <div class="lbl">Gancho</div>
     <div class="gancho">"Alocação de profissionais de TI especializados — recurso certo, no projeto certo, pelo tempo certo, sem custo CLT. Posso te mostrar como funciona?"</div>
     <div class="inf-card">
@@ -1119,7 +1197,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
         <span class="chev" style="color:var(--color-text-success)">▾</span>
       </div>
       <div class="pitch-body">
-        <div class="pitch-text">[Nome], CFO de indústria geralmente tem três custos que crescem em silêncio: o risco financeiro de um incidente cibernético sem proteção adequada, o custo operacional de processos financeiros manuais — conciliação, cobrança, NF — e o capex pesado em equipamentos que ficam obsoletos.<br><br>A Selbetti endereça as três: nosso SOC protege a operação com custo previsível e evidências para o seguro; o RPA automatiza o back-office financeiro — a conciliação que hoje leva dias passa a rodar sozinha; e a locação de equipamentos transforma capex em opex mensal com manutenção inclusa.<br><br>Qual dessas frentes faz mais sentido discutir primeiro?</div>
+        <div class="pitch-text">[Nome], CFO de indústria geralmente tem quatro custos que crescem em silêncio: o risco financeiro de um incidente cibernético sem proteção adequada; o custo operacional de processos financeiros manuais — conciliação, cobrança, NF; o capex pesado em equipamentos que ficam obsoletos; e as faturas de telecom pagas todo mês sem saber se está sendo cobrado corretamente.<br><br>A Selbetti endereça as quatro: nosso SOC protege a operação com custo previsível; o RPA automatiza o back-office financeiro; a locação de equipamentos transforma capex em opex mensal com manutenção inclusa; e a Guiando audita e automatiza a gestão de faturas de telecom — o Grupo Boticário economizou mais de R$15MM com essa solução.<br><br>Qual dessas frentes faz mais sentido discutir primeiro?</div>
       </div>
     </div>
 <div class="script-hint">💬 <strong>Como usar:</strong> Copie o pitch acima, cole no chat do Claude e peça para transformar em script de cold call com objeções para essa persona.</div>
@@ -1177,7 +1255,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
         <span class="chev" style="color:var(--color-text-success)">▾</span>
       </div>
       <div class="pitch-body">
-        <div class="pitch-text">[Nome], CEO de indústria normalmente enfrenta três desafios estratégicos ao mesmo tempo: tomar decisões com dados que chegam atrasados e fragmentados; processos operacionais que cresceram junto com a empresa mas nunca foram reestruturados; e, para quem vende para o varejo, a falta de visibilidade sobre como os produtos estão sendo precificados nas gôndolas.<br><br>A Selbetti trabalha nessas três frentes: o Interactive Intelligence coloca inteligência de dados na mão do seu time de gestão hoje; a consultoria de processos reestrutura o que precisa ser reestruturado sem parar a operação; e a inteligência de preços dá visibilidade real sobre o posicionamento dos seus produtos no varejo.<br><br>Qual dessas três está mais crítica para você agora?</div>
+        <div class="pitch-text">[Nome], CEO de indústria normalmente enfrenta três desafios estratégicos ao mesmo tempo: tomar decisões com dados que chegam atrasados e fragmentados; processos operacionais que cresceram junto com a empresa mas nunca foram reestruturados; e, para quem vende para o varejo, a falta de visibilidade sobre como os produtos estão sendo precificados nas gôndolas.<br><br>A Selbetti trabalha nessas três frentes: o Interactive Intelligence coloca inteligência de dados na mão do seu time de gestão hoje; a consultoria de processos reestrutura o que precisa ser reestruturado — mapeamos processos na Intelbras e implantamos e-commerce B2C na Schulz; e o Eiprice monitora o preço dos seus produtos na concorrência e nos varejistas em tempo real, protegendo margem e posicionamento sem esforço operacional.<br><br>Qual dessas três está mais crítica para você agora?</div>
       </div>
     </div>
 <div class="script-hint">💬 <strong>Como usar:</strong> Copie o pitch acima, cole no chat do Claude e peça para transformar em script de cold call com objeções para essa persona.</div>
@@ -1269,7 +1347,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
         <span class="chev" style="color:var(--color-text-success)">▾</span>
       </div>
       <div class="pitch-body">
-        <div class="pitch-text">[Nome], fabricantes que vendem para o varejo normalmente têm um ponto cego crítico: não sabem como seus produtos estão sendo precificados nas gôndolas dos clientes. Quando a distorção de preço aparece, já perdeu margem, posicionamento e às vezes o relacionamento com o varejista.<br><br>A Selbetti tem uma solução de inteligência de preços que monitora suas SKUs em tempo real nos PDVs — você vê compliance de preço sugerido, posicionamento versus concorrência e distorções antes que virem problema.<br><br>Vale 20 minutos para te mostrar como funciona?</div>
+        <div class="pitch-text">[Nome], fabricantes que vendem para o varejo normalmente têm um ponto cego crítico: não sabem como seus produtos estão sendo precificados nas gôndolas dos clientes. Quando a distorção de preço aparece, já perdeu margem, posicionamento e às vezes o relacionamento com o varejista.<br><br>A Selbetti tem o Eiprice — monitoramento inteligente de preços que rastreia suas SKUs em tempo real nos PDVs e na concorrência, com dados estruturados para decisão rápida. Você vê compliance de preço sugerido, posicionamento versus concorrência e distorções antes que virem problema. E o Pricefy garante que a comunicação de preço na gôndola seja atualizada em segundos, sem erro, em todas as lojas ao mesmo tempo.<br><br>Vale 20 minutos para te mostrar como funciona?</div>
       </div>
     </div>
 <div class="script-hint">💬 <strong>Como usar:</strong> Copie o pitch acima, cole no chat do Claude e peça para transformar em script de cold call com objeções para essa persona.</div>
@@ -1301,7 +1379,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="lbl">Soluções</div>
     <div class="tags"><span class="tag">Hawk</span><span class="tag">IA para glosas</span></div>
     <div class="lbl">Gancho</div>
-    <div class="gancho">"O Hawk automatiza o ciclo de receitas e identifica glosas antes do envio. Atendemos Fleury e Hermes Pardini. Vale 20 min?"</div>
+    <div class="gancho">"O Hawk automatiza o ciclo de receitas e identifica glosas antes do envio — somos parceiros Databricks com +25 anos em dados de saúde. Atendemos Fleury, Hermes Pardini e Rede D'Or São Luiz. Vale 20 min?"</div>
     <div class="inf-card">
       <div class="inf-hd" onclick="togI(this)">
         <span class="inf-label">⚡ Influenciadores nesta venda</span>
@@ -1347,7 +1425,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="lbl">Soluções</div>
     <div class="tags"><span class="tag">Hawk</span><span class="tag">RPA faturamento</span></div>
     <div class="lbl">Gancho</div>
-    <div class="gancho">"Hawk identifica inconsistência no faturamento antes do envio — zerando glosa na origem. Posso mostrar como funciona no Hermes Pardini?"</div>
+    <div class="gancho">"Hawk identifica inconsistência no faturamento antes do envio — zerando glosa na origem. Atendemos Hermes Pardini e Rede D'Or São Luiz com essa solução. Posso mostrar?"</div>
     <div class="inf-card">
       <div class="inf-hd" onclick="togI(this)">
         <span class="inf-label">⚡ Influenciadores nesta venda</span>
@@ -1410,7 +1488,49 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     </div>
   </div>
 </div></div>
-</div>
+
+<div class="p-card">
+  <div class="p-hd" onclick="togAny(this)">
+    <div class="p-av">CFO</div>
+    <div class="p-meta">
+      <div class="p-name">CFO / Gerente Administrativo / Ger. de TI</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">Guiando — Gestão de Telecom</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Pago faturas de telecom todo mês sem saber se estou sendo cobrado corretamente. Não tenho visibilidade de quanto cada área consome e não consigo identificar planos obsoletos ou cobranças indevidas."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Guiando TEM</span><span class="tag">Auditoria de Faturas</span><span class="tag">Gestão de Ativos Telecom</span><span class="tag">BPO Telecom</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"O Grupo Boticário economizou mais de R$15MM em despesas de telecom com a Guiando — auditando cobranças indevidas e eliminando planos obsoletos. Empresas do seu porte normalmente têm entre 10% e 20% de desperdício nas faturas de telecom sem saber. Vale 20 min para mostrar como identificamos isso?"</div>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togAny(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body">
+        <div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">Gerente de TI / Telecom</div>
+            <div class="inf-papel">Gestiona os ativos de telecom no dia a dia. Valida a integração da Guiando com o ERP e os sistemas internos.</div>
+            <div class="inf-dica">💡 Envolva o Ger. de TI desde o início — ele conhece os contratos e valida a acuracidade do inventário. Aliado forte quando percebe o volume de trabalho manual que a Guiando elimina.</div>
+          </div>
+        </div>
+        <div class="inf-row">
+          <div class="inf-av">ADM</div>
+          <div>
+            <div class="inf-name">Gerente Administrativo / Controller</div>
+            <div class="inf-papel">Responsável pelo contas a pagar e pela conciliação das faturas de telecom. Usuário direto da plataforma.</div>
+            <div class="inf-dica">💡 O Ger. Adm. é o que mais sofre com o processo manual. Mostre o antes e depois da automação — ele vira campeão interno e leva o CFO.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div>
 <div class="sol-block">
   <div class="sol-hd" onclick="tog(this)">
     <span class="sol-title">📞 Customer Experience — URA, Omnichannel, Discador, Telemedicina</span>
@@ -1431,7 +1551,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="lbl">Soluções</div>
     <div class="tags"><span class="tag">URA Inteligente</span><span class="tag">Discador Automático</span><span class="tag">Omnichannel</span></div>
     <div class="lbl">Gancho</div>
-    <div class="gancho">"Hospitais do seu porte reduzem no-show em até 40% com URA inteligente. Atendemos Fleury com isso. Vale 20 min?"</div>
+    <div class="gancho">"Hospitais do seu porte reduzem no-show em até 40% com URA inteligente. Nossa URA elevou a retenção da Credsystem de 70% para 74% com 1,2 milhão de ligações/mês. Atendemos Fleury com solução similar. Vale 20 min?"</div>
     <div class="inf-card">
       <div class="inf-hd" onclick="togI(this)">
         <span class="inf-label">⚡ Influenciadores nesta venda</span>
@@ -1477,7 +1597,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="lbl">Soluções</div>
     <div class="tags"><span class="tag">Bots Atendimento</span><span class="tag">Monitoria com IA</span><span class="tag">URA</span></div>
     <div class="lbl">Gancho</div>
-    <div class="gancho">"Bots resolvem perguntas repetitivas e monitoria com IA avalia 100% dos atendimentos sem supervisor ouvindo cada ligação. Posso mostrar?"</div>
+    <div class="gancho">"Empresas monitoram apenas 2% das chamadas — 98% ficam sem análise. Nossa monitoria com IA cobre 100% dos atendimentos e bots resolvem as perguntas repetitivas. Me Poupe! implementou bot via WhatsApp com CSAT de 82% e retenção de 72%. Vale 20 min?"</div>
     <div class="inf-card">
       <div class="inf-hd" onclick="togI(this)">
         <span class="inf-label">⚡ Influenciadores nesta venda</span>
@@ -1883,7 +2003,49 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     </div>
   </div>
 </div></div>
-</div>
+
+<div class="p-card">
+  <div class="p-hd" onclick="togAny(this)">
+    <div class="p-av">CFO</div>
+    <div class="p-meta">
+      <div class="p-name">CFO / Gerente Administrativo / Ger. de TI</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">Guiando — Gestão de Telecom</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Pago faturas de telecom todo mês sem saber se estou sendo cobrado corretamente. Não tenho visibilidade de quanto cada área consome e não consigo identificar planos obsoletos ou cobranças indevidas."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Guiando TEM</span><span class="tag">Auditoria de Faturas</span><span class="tag">Gestão de Ativos Telecom</span><span class="tag">BPO Telecom</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"O Grupo Boticário economizou mais de R$15MM em despesas de telecom com a Guiando — auditando cobranças indevidas e eliminando planos obsoletos. Empresas do seu porte normalmente têm entre 10% e 20% de desperdício nas faturas de telecom sem saber. Vale 20 min para mostrar como identificamos isso?"</div>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togAny(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body">
+        <div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">Gerente de TI / Telecom</div>
+            <div class="inf-papel">Gestiona os ativos de telecom no dia a dia. Valida a integração da Guiando com o ERP e os sistemas internos.</div>
+            <div class="inf-dica">💡 Envolva o Ger. de TI desde o início — ele conhece os contratos e valida a acuracidade do inventário. Aliado forte quando percebe o volume de trabalho manual que a Guiando elimina.</div>
+          </div>
+        </div>
+        <div class="inf-row">
+          <div class="inf-av">ADM</div>
+          <div>
+            <div class="inf-name">Gerente Administrativo / Controller</div>
+            <div class="inf-papel">Responsável pelo contas a pagar e pela conciliação das faturas de telecom. Usuário direto da plataforma.</div>
+            <div class="inf-dica">💡 O Ger. Adm. é o que mais sofre com o processo manual. Mostre o antes e depois da automação — ele vira campeão interno e leva o CFO.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div>
 <div class="sol-block">
   <div class="sol-hd" onclick="tog(this)">
     <span class="sol-title">🖥️ IT Solutions — Cloud, Outsourcing TI, Observabilidade</span>
@@ -2017,7 +2179,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="lbl">Dor</div>
     <div class="dor">"Precisamos reestruturar processos administrativos e clínicos mas não temos equipe para conduzir o projeto."</div>
     <div class="lbl">Soluções</div>
-    <div class="tags"><span class="tag">Consultoria em Processos</span><span class="tag">Gestão de Projetos</span></div>
+    <div class="tags"><span class="tag">Consultoria em Processos</span><span class="tag">PMO / BPMO</span><span class="tag">Gestão de Projetos</span><span class="tag">Gestão de Mudança</span></div>
     <div class="lbl">Gancho</div>
     <div class="gancho">"A Selbetti mapeia e reestrutura processos hospitalares com gestão de mudança incluída — sem parar a operação. Atendemos hospitais e operadoras. Vale 20 min?"</div>
     <div class="inf-card">
@@ -2056,7 +2218,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="lbl">Dor</div>
     <div class="dor">"Precisamos de especialistas em TI hospitalar para projetos específicos mas o mercado é escasso e caro para CLT."</div>
     <div class="lbl">Soluções</div>
-    <div class="tags"><span class="tag">Outsourcing TI</span><span class="tag">Alocação Profissionais</span></div>
+    <div class="tags"><span class="tag">Outsourcing GP / TI</span><span class="tag">Alocação de Profissionais</span><span class="tag">PMO</span></div>
     <div class="lbl">Gancho</div>
     <div class="gancho">"Alocação de profissionais de TI especializados em saúde — recurso certo, projeto certo, tempo certo, sem CLT. Posso te mostrar?"</div>
     <div class="inf-card">
@@ -2210,7 +2372,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
         <span class="chev" style="color:var(--color-text-success)">▾</span>
       </div>
       <div class="pitch-body">
-        <div class="pitch-text">[Nome], TI hospitalar normalmente acumula desafios que não existem em outras verticais: sistemas críticos que não podem cair, dados clínicos que precisam estar disponíveis e protegidos ao mesmo tempo, equipe médica resistente a qualquer mudança de dispositivo e uma demanda por especialistas de TI em saúde que o mercado não supre em CLT.<br><br>A Selbetti trabalha nessas quatro frentes: ITO e Cloud garantem disponibilidade 24×7 com SLA; Interactive Intelligence coloca IA sobre os dados clínicos sem mexer nos sistemas atuais; tablets corporativos resolvem a questão de segurança e gestão de dispositivos da equipe médica; e alocação de profissionais de TI em saúde cobre os projetos críticos sem o risco de contratação CLT.<br><br>Qual dessas frentes está mais urgente para você agora?</div>
+        <div class="pitch-text">[Nome], TI hospitalar normalmente acumula desafios que não existem em outras verticais: sistemas críticos que não podem cair, dados clínicos protegidos, equipe médica resistente a mudança de dispositivo e faturas de telecom — links, ramais, circuitos — pagas sem visibilidade de cobranças indevidas.<br><br>A Selbetti trabalha nessas frentes: ITO e Cloud garantem disponibilidade 24×7 com SLA; Interactive Intelligence coloca IA sobre os dados clínicos sem mexer nos sistemas atuais; tablets corporativos resolvem gestão de dispositivos da equipe médica; alocação de profissionais de TI em saúde cobre projetos críticos sem CLT; e a Guiando audita as faturas de telecom automaticamente — hospitais do seu porte costumam ter entre 10% e 20% de desperdício nessa linha.<br><br>Qual dessas frentes está mais urgente para você agora?</div>
       </div>
     </div>
 <div class="script-hint">💬 <strong>Como usar:</strong> Copie o pitch acima, cole no chat do Claude e peça para transformar em script de cold call com objeções para essa persona.</div>
@@ -2314,7 +2476,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
         <span class="chev" style="color:var(--color-text-success)">▾</span>
       </div>
       <div class="pitch-body">
-        <div class="pitch-text">[Nome], hospitais armazenam a categoria de dados mais sensível da LGPD — dados clínicos de pacientes. Uma autuação da ANPD pode chegar a 2% do faturamento anual, e o regulador está aumentando o escrutínio sobre a saúde.<br><br>A Selbetti tem um processo estruturado para mapear, classificar e proteger os dados de pacientes — com SOC 24×7 monitorando o ambiente e entregando evidências de controle que o jurídico e os auditores precisam ver.<br><br>Quanto tempo sua instituição ainda vai conviver com esse passivo jurídico aberto? Posso mostrar como estruturamos isso em outras instituições de saúde em 20 minutos.</div>
+        <div class="pitch-text">[Nome], hospitais armazenam a categoria de dados mais sensível da LGPD — dados clínicos de pacientes. Uma autuação da ANPD pode chegar a 2% do faturamento anual, e o regulador está aumentando o escrutínio sobre a saúde.<br><br>A Selbetti tem um processo estruturado para mapear, classificar e proteger os dados de pacientes — com SOC 24×7 monitorando o ambiente e Quality Manager centralizando LGPD, GRC e governança de IA. Conduzimos a adequação LGPD da Brametal de forma ágil e estratégica. Posso mostrar como estruturamos isso em outras instituições de saúde em 20 minutos.</div>
       </div>
     </div>
 <div class="script-hint">💬 <strong>Como usar:</strong> Copie o pitch acima, cole no chat do Claude e peça para transformar em script de cold call com objeções para essa persona.</div>
@@ -2463,9 +2625,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="lbl">Dor</div>
     <div class="dor">"Não tenho visibilidade de como a concorrência está precificando. Fico sabendo da guerra de preços quando já perdi venda."</div>
     <div class="lbl">Soluções</div>
-    <div class="tags"><span class="tag">Inteligência de Preços</span><span class="tag">Monitoria Concorrência</span></div>
+    <div class="tags"><span class="tag">Eiprice — Inteligência de Preços</span><span class="tag">Monitoria de Concorrência</span><span class="tag">Pricefy — Comunicação de Preços PDV</span></div>
     <div class="lbl">Gancho</div>
-    <div class="gancho">"Nossa inteligência de preços monitora a concorrência em tempo real — você age antes de perder margem ou cliente. Vale 20 min?"</div>
+    <div class="gancho">"O Eiprice monitora continuamente os preços da concorrência — por SKU, por canal, em tempo real — para você reagir antes de perder venda ou margem. Precificação por feeling é risco; com dado estruturado, é vantagem competitiva. Vale 20 min?"</div>
     <div class="inf-card">
       <div class="inf-hd" onclick="togI(this)">
         <span class="inf-label">⚡ Influenciadores nesta venda</span>
@@ -2489,7 +2651,49 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     </div>
   </div>
 </div></div>
-</div>
+
+<div class="p-card">
+  <div class="p-hd" onclick="togAny(this)">
+    <div class="p-av">CFO</div>
+    <div class="p-meta">
+      <div class="p-name">CFO / Gerente Administrativo / Ger. de TI</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">Guiando — Gestão de Telecom</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Pago faturas de telecom todo mês sem saber se estou sendo cobrado corretamente. Não tenho visibilidade de quanto cada área consome e não consigo identificar planos obsoletos ou cobranças indevidas."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Guiando TEM</span><span class="tag">Auditoria de Faturas</span><span class="tag">Gestão de Ativos Telecom</span><span class="tag">BPO Telecom</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"O Grupo Boticário economizou mais de R$15MM em despesas de telecom com a Guiando — auditando cobranças indevidas e eliminando planos obsoletos. Empresas do seu porte normalmente têm entre 10% e 20% de desperdício nas faturas de telecom sem saber. Vale 20 min para mostrar como identificamos isso?"</div>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togAny(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body">
+        <div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">Gerente de TI / Telecom</div>
+            <div class="inf-papel">Gestiona os ativos de telecom no dia a dia. Valida a integração da Guiando com o ERP e os sistemas internos.</div>
+            <div class="inf-dica">💡 Envolva o Ger. de TI desde o início — ele conhece os contratos e valida a acuracidade do inventário. Aliado forte quando percebe o volume de trabalho manual que a Guiando elimina.</div>
+          </div>
+        </div>
+        <div class="inf-row">
+          <div class="inf-av">ADM</div>
+          <div>
+            <div class="inf-name">Gerente Administrativo / Controller</div>
+            <div class="inf-papel">Responsável pelo contas a pagar e pela conciliação das faturas de telecom. Usuário direto da plataforma.</div>
+            <div class="inf-dica">💡 O Ger. Adm. é o que mais sofre com o processo manual. Mostre o antes e depois da automação — ele vira campeão interno e leva o CFO.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div>
 <div class="sol-block">
   <div class="sol-hd" onclick="tog(this)">
     <span class="sol-title">📱 IT Devices — CFTV, Controle de Acesso, Locação de Equipamentos</span>
@@ -2573,7 +2777,49 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     </div>
   </div>
 </div></div>
-</div>
+
+<div class="p-card">
+  <div class="p-hd" onclick="togAny(this)">
+    <div class="p-av">CFO</div>
+    <div class="p-meta">
+      <div class="p-name">CFO / Gerente Administrativo / Ger. de TI</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">Guiando — Gestão de Telecom</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Pago faturas de telecom todo mês sem saber se estou sendo cobrado corretamente. Não tenho visibilidade de quanto cada área consome e não consigo identificar planos obsoletos ou cobranças indevidas."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Guiando TEM</span><span class="tag">Auditoria de Faturas</span><span class="tag">Gestão de Ativos Telecom</span><span class="tag">BPO Telecom</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"O Grupo Boticário economizou mais de R$15MM em despesas de telecom com a Guiando — auditando cobranças indevidas e eliminando planos obsoletos. Empresas do seu porte normalmente têm entre 10% e 20% de desperdício nas faturas de telecom sem saber. Vale 20 min para mostrar como identificamos isso?"</div>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togAny(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body">
+        <div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">Gerente de TI / Telecom</div>
+            <div class="inf-papel">Gestiona os ativos de telecom no dia a dia. Valida a integração da Guiando com o ERP e os sistemas internos.</div>
+            <div class="inf-dica">💡 Envolva o Ger. de TI desde o início — ele conhece os contratos e valida a acuracidade do inventário. Aliado forte quando percebe o volume de trabalho manual que a Guiando elimina.</div>
+          </div>
+        </div>
+        <div class="inf-row">
+          <div class="inf-av">ADM</div>
+          <div>
+            <div class="inf-name">Gerente Administrativo / Controller</div>
+            <div class="inf-papel">Responsável pelo contas a pagar e pela conciliação das faturas de telecom. Usuário direto da plataforma.</div>
+            <div class="inf-dica">💡 O Ger. Adm. é o que mais sofre com o processo manual. Mostre o antes e depois da automação — ele vira campeão interno e leva o CFO.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div>
 <div class="sol-block">
   <div class="sol-hd" onclick="tog(this)">
     <span class="sol-title">📞 Customer Experience — Omnichannel, URA, Bots, Monitoria IA</span>
@@ -2933,7 +3179,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="lbl">Dor</div>
     <div class="dor">"Abrimos lojas novas mas o processo de setup de TI e operação é lento e inconsistente entre unidades."</div>
     <div class="lbl">Soluções</div>
-    <div class="tags"><span class="tag">Consultoria em Processos</span><span class="tag">Gestão de Projetos</span><span class="tag">Outsourcing TI</span></div>
+    <div class="tags"><span class="tag">Consultoria em Processos</span><span class="tag">PMO</span><span class="tag">ERP/CRM</span><span class="tag">Outsourcing GP / TI</span><span class="tag">Gestão de Mudança</span></div>
     <div class="lbl">Gancho</div>
     <div class="gancho">"A Selbetti padroniza e acelera o setup de TI e operação para abertura de lojas — nova unidade operando em metade do tempo. Posso te mostrar como funciona?"</div>
     <div class="inf-card">
@@ -3012,7 +3258,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
         <span class="chev" style="color:var(--color-text-success)">▾</span>
       </div>
       <div class="pitch-body">
-        <div class="pitch-text">[Nome], operação de varejo normalmente convive com três ineficiências ao mesmo tempo: troca de preço manual que consome horas da equipe e ainda gera erro de comunicação; equipamentos de loja que viram capex pesado e travam manutenção nas datas mais críticas; e etiquetagem de produto feita na mão com alto índice de inconsistência.<br><br>A Selbetti resolve as três: ESL atualiza preço em toda a loja em segundos direto do sistema; locação de equipamentos elimina o capex e garante substituição em 24h com SLA; e impressoras térmicas na loja eliminam o erro de etiquetagem e aceleram o abastecimento.<br><br>Qual dessas três está mais urgente na sua operação hoje?</div>
+        <div class="pitch-text">[Nome], operação de varejo normalmente convive com quatro ineficiências ao mesmo tempo: troca de preço manual que consome horas e gera erro; equipamentos de loja que viram capex pesado; etiquetagem feita na mão com alto índice de inconsistência; e falta de visibilidade sobre como a concorrência está precificando — você descobre a guerra de preços quando já perdeu margem.<br><br>A Selbetti resolve as quatro: ESL atualiza preço em toda a loja em segundos; locação de equipamentos elimina o capex com SLA de substituição em 24h; impressoras térmicas eliminam o erro de etiquetagem; e o Eiprice monitora os preços da concorrência em tempo real — decisão de precificação baseada em dado, não em feeling.<br><br>Qual dessas quatro está mais urgente na sua operação hoje?</div>
       </div>
     </div>
 <div class="script-hint">💬 <strong>Como usar:</strong> Copie o pitch acima, cole no chat do Claude e peça para transformar em script de cold call com objeções para essa persona.</div>
@@ -3058,7 +3304,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
         <span class="chev" style="color:var(--color-text-success)">▾</span>
       </div>
       <div class="pitch-body">
-        <div class="pitch-text">[Nome], CFO de varejo normalmente carrega dois custos que crescem em silêncio: back-office financeiro manual — conciliação multicanal, NF de fornecedor, cobrança — que consome dias do time e ainda gera erro; e capex pesado em equipamentos que ficam obsoletos antes de amortizar, com manutenção imprevisível nas datas mais críticas.<br><br>A Selbetti resolve os dois: RPA automatiza conciliação e processamento de NF — zero digitação, erro detectado em tempo real; e locação de equipamentos transforma capex em opex mensal com manutenção e substituição inclusas.<br><br>Qual dessas duas frentes está mais crítica para você agora?</div>
+        <div class="pitch-text">[Nome], CFO de varejo normalmente carrega três custos que crescem em silêncio: back-office financeiro manual — conciliação multicanal, NF de fornecedor — que consome dias do time; capex pesado em equipamentos que ficam obsoletos; e faturas de telecom de dezenas de lojas pagas sem visibilidade de cobranças indevidas ou links desnecessários.<br><br>A Selbetti resolve as três: RPA automatiza conciliação e NF — zero digitação; locação transforma capex em opex mensal com manutenção inclusa; e a Guiando audita automaticamente todas as faturas de telecom da rede — redes do seu porte normalmente encontram entre 10% e 20% de desperdício nessa linha.<br><br>Qual dessas três está mais crítica para você agora?</div>
       </div>
     </div>
 <div class="script-hint">💬 <strong>Como usar:</strong> Copie o pitch acima, cole no chat do Claude e peça para transformar em script de cold call com objeções para essa persona.</div>
@@ -3116,7 +3362,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
         <span class="chev" style="color:var(--color-text-success)">▾</span>
       </div>
       <div class="pitch-body">
-        <div class="pitch-text">[Nome], TI de varejo tem três pressões que não existem em outras verticais: e-commerce que precisa escalar sem aviso no pico — Black Friday, datas comemorativas — sem cair; dados de clientes em CRM e plataformas que são alvo constante e têm risco regulatório LGPD; e parque de equipamentos espalhados por dezenas de lojas difícil de manter e atualizar.<br><br>A Selbetti cobre as três: Cloud e Observabilidade garantem disponibilidade e escalabilidade para o e-commerce; SOC 24×7 monitora e protege os dados de clientes; e locação de equipamentos elimina a gestão de parque distribuído — manutenção e substituição centralizadas com SLA.<br><br>Qual dessas três está mais urgente para você agora?</div>
+        <div class="pitch-text">[Nome], TI de varejo tem quatro pressões que não existem em outras verticais: e-commerce que precisa escalar no pico sem cair; dados de clientes com risco LGPD; parque de equipamentos distribuído por dezenas de lojas difícil de manter; e faturas de telecom de múltiplas unidades sem gestão centralizada.<br><br>A Selbetti cobre as quatro: Cloud e Observabilidade — somos pioneiros no Brasil com Zabbix — garantem disponibilidade e escalabilidade; SOC 24×7 protege os dados de clientes; locação elimina a gestão de parque distribuído com SLA; e a Guiando centraliza e audita todas as faturas de telecom da rede — redes do seu porte normalmente têm 10% a 20% de desperdício nessa linha.<br><br>Qual dessas quatro está mais urgente para você agora?</div>
       </div>
     </div>
 <div class="script-hint">💬 <strong>Como usar:</strong> Copie o pitch acima, cole no chat do Claude e peça para transformar em script de cold call com objeções para essa persona.</div>
@@ -3162,7 +3408,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
         <span class="chev" style="color:var(--color-text-success)">▾</span>
       </div>
       <div class="pitch-body">
-        <div class="pitch-text">[Nome], Diretor Comercial de varejo normalmente enfrenta dois desafios simultâneos: falta de visibilidade sobre como a concorrência está precificando — você descobre a guerra de preços quando já perdeu a venda; e jornada do cliente fragmentada entre físico e digital, com carrinho abandonado sem recuperação automática.<br><br>A Selbetti endereça os dois: inteligência de preços monitora a concorrência em tempo real por categoria e SKU — você age preventivamente; e omnichannel conecta os canais e ativa recuperação automática de carrinho pelo canal preferido do cliente.<br><br>Qual das duas frentes impacta mais sua meta agora?</div>
+        <div class="pitch-text">[Nome], Diretor Comercial de varejo normalmente enfrenta dois desafios simultâneos: falta de visibilidade sobre como a concorrência está precificando — você descobre a guerra de preços quando já perdeu a venda; e jornada do cliente fragmentada entre físico e digital, com carrinho abandonado sem recuperação automática.<br><br>A Selbetti endereça os dois: o Eiprice monitora a concorrência em tempo real por SKU e canal — você age com dado estruturado, não por feeling, antes de perder margem; e omnichannel conecta os canais e ativa recuperação automática de carrinho pelo canal preferido do cliente.<br><br>Qual das duas frentes impacta mais sua meta agora?</div>
       </div>
     </div>
 <div class="script-hint">💬 <strong>Como usar:</strong> Copie o pitch acima, cole no chat do Claude e peça para transformar em script de cold call com objeções para essa persona.</div>
@@ -3264,7 +3510,49 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     </div>
   </div>
 </div></div>
-</div>
+
+<div class="p-card">
+  <div class="p-hd" onclick="togAny(this)">
+    <div class="p-av">CFO</div>
+    <div class="p-meta">
+      <div class="p-name">CFO / Gerente Administrativo / Ger. de TI</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">Guiando — Gestão de Telecom</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Pago faturas de telecom todo mês sem saber se estou sendo cobrado corretamente. Não tenho visibilidade de quanto cada área consome e não consigo identificar planos obsoletos ou cobranças indevidas."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Guiando TEM</span><span class="tag">Auditoria de Faturas</span><span class="tag">Gestão de Ativos Telecom</span><span class="tag">BPO Telecom</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"O Grupo Boticário economizou mais de R$15MM em despesas de telecom com a Guiando — auditando cobranças indevidas e eliminando planos obsoletos. Empresas do seu porte normalmente têm entre 10% e 20% de desperdício nas faturas de telecom sem saber. Vale 20 min para mostrar como identificamos isso?"</div>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togAny(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body">
+        <div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">Gerente de TI / Telecom</div>
+            <div class="inf-papel">Gestiona os ativos de telecom no dia a dia. Valida a integração da Guiando com o ERP e os sistemas internos.</div>
+            <div class="inf-dica">💡 Envolva o Ger. de TI desde o início — ele conhece os contratos e valida a acuracidade do inventário. Aliado forte quando percebe o volume de trabalho manual que a Guiando elimina.</div>
+          </div>
+        </div>
+        <div class="inf-row">
+          <div class="inf-av">ADM</div>
+          <div>
+            <div class="inf-name">Gerente Administrativo / Controller</div>
+            <div class="inf-papel">Responsável pelo contas a pagar e pela conciliação das faturas de telecom. Usuário direto da plataforma.</div>
+            <div class="inf-dica">💡 O Ger. Adm. é o que mais sofre com o processo manual. Mostre o antes e depois da automação — ele vira campeão interno e leva o CFO.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div>
 <div class="sol-block">
   <div class="sol-hd" onclick="tog(this)">
     <span class="sol-title">⚙️ Process Solutions — RPA, BPMS, S-SIGN, ECM</span>
@@ -3369,7 +3657,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="lbl">Soluções</div>
     <div class="tags"><span class="tag">Selbetti ITO</span><span class="tag">Selbetti Cloud</span><span class="tag">Observabilidade 24×7</span></div>
     <div class="lbl">Gancho</div>
-    <div class="gancho">"Selbetti ITO cobre todos os turnos do CD com SLA — WMS e TMS com disponibilidade 24×7 sem equipe interna. Vale 20 min?"</div>
+    <div class="gancho">"Selbetti ITO cobre todos os turnos do CD com SLA — WMS e TMS com disponibilidade 24×7 sem equipe interna. Atendemos a Ultragaz nessa frente. Vale 20 min?"</div>
     <div class="inf-card">
       <div class="inf-hd" onclick="togI(this)">
         <span class="inf-label">⚡ Influenciadores nesta venda</span>
@@ -3438,7 +3726,49 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     </div>
   </div>
 </div></div>
-</div>
+
+<div class="p-card">
+  <div class="p-hd" onclick="togAny(this)">
+    <div class="p-av">CFO</div>
+    <div class="p-meta">
+      <div class="p-name">CFO / Gerente Administrativo / Ger. de TI</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">Guiando — Gestão de Telecom</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Pago faturas de telecom todo mês sem saber se estou sendo cobrado corretamente. Não tenho visibilidade de quanto cada área consome e não consigo identificar planos obsoletos ou cobranças indevidas."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Guiando TEM</span><span class="tag">Auditoria de Faturas</span><span class="tag">Gestão de Ativos Telecom</span><span class="tag">BPO Telecom</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"O Grupo Boticário economizou mais de R$15MM em despesas de telecom com a Guiando — auditando cobranças indevidas e eliminando planos obsoletos. Empresas do seu porte normalmente têm entre 10% e 20% de desperdício nas faturas de telecom sem saber. Vale 20 min para mostrar como identificamos isso?"</div>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togAny(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body">
+        <div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">Gerente de TI / Telecom</div>
+            <div class="inf-papel">Gestiona os ativos de telecom no dia a dia. Valida a integração da Guiando com o ERP e os sistemas internos.</div>
+            <div class="inf-dica">💡 Envolva o Ger. de TI desde o início — ele conhece os contratos e valida a acuracidade do inventário. Aliado forte quando percebe o volume de trabalho manual que a Guiando elimina.</div>
+          </div>
+        </div>
+        <div class="inf-row">
+          <div class="inf-av">ADM</div>
+          <div>
+            <div class="inf-name">Gerente Administrativo / Controller</div>
+            <div class="inf-papel">Responsável pelo contas a pagar e pela conciliação das faturas de telecom. Usuário direto da plataforma.</div>
+            <div class="inf-dica">💡 O Ger. Adm. é o que mais sofre com o processo manual. Mostre o antes e depois da automação — ele vira campeão interno e leva o CFO.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div>
 <div class="sol-block">
   <div class="sol-hd" onclick="tog(this)">
     <span class="sol-title">🔒 Cybersecurity Solutions — SOC, LGPD, Proteção de Dados Logísticos</span>
@@ -3502,7 +3832,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="lbl">Dor</div>
     <div class="dor">"Operação cresceu mas os processos do CD nunca foram redesenhados. Ineficiência no picking e endereçamento impacta SLA com clientes."</div>
     <div class="lbl">Soluções</div>
-    <div class="tags"><span class="tag">Consultoria em Processos Logísticos</span><span class="tag">Gestão de Projetos</span></div>
+    <div class="tags"><span class="tag">Consultoria em Processos Logísticos</span><span class="tag">PMO</span><span class="tag">Gestão de Projetos</span><span class="tag">Mapeamento de Processos</span></div>
     <div class="lbl">Gancho</div>
     <div class="gancho">"A Selbetti mapeia e redesenha fluxos de CD sem parar a operação — picking mais eficiente, SLA preservado. Posso te mostrar casos da região?"</div>
     <div class="inf-card">
@@ -3664,7 +3994,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
         <span class="chev" style="color:var(--color-text-success)">▾</span>
       </div>
       <div class="pitch-body">
-        <div class="pitch-text">[Nome], operação de CD normalmente convive com três pressões simultâneas: etiquetagem manual que gera erro de expedição e devolução com multa contratual; CFTV antigo que não suporta auditoria de sinistro e ausência de controle de acesso nas docas; e processos de picking e endereçamento que nunca foram redesenhados à medida que o volume cresceu.<br><br>A Selbetti endereça as três: etiquetagem automática na expedição elimina erro e rastreia cada volume; CFTV HD + controle de acesso nas docas garante rastreabilidade total de carga e evidência para sinistro; e consultoria de processos logísticos redesenha o fluxo do CD sem parar a operação.<br><br>Qual dessas três está mais crítica agora?</div>
+        <div class="pitch-text">[Nome], operação de CD normalmente convive com três pressões simultâneas: etiquetagem manual que gera erro de expedição e devolução com multa contratual; CFTV antigo que não suporta auditoria de sinistro; e processos de picking e endereçamento que nunca foram redesenhados à medida que o volume cresceu.<br><br>A Selbetti endereça as três: etiquetagem automática elimina erro e rastreia cada volume — atendemos a DHL com RFID em CD; CFTV HD + controle de acesso nas docas garante rastreabilidade total; e consultoria de processos logísticos redesenha o fluxo do CD sem parar a operação — ajudamos a Allog a ganhar visão estratégica dos seus processos com resultado imediato.<br><br>Qual dessas três está mais crítica agora?</div>
       </div>
     </div>
 <div class="script-hint">💬 <strong>Como usar:</strong> Copie o pitch acima, cole no chat do Claude e peça para transformar em script de cold call com objeções para essa persona.</div>
@@ -3885,7 +4215,49 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     </div>
   </div>
 </div></div>
-</div>
+
+<div class="p-card">
+  <div class="p-hd" onclick="togAny(this)">
+    <div class="p-av">CFO</div>
+    <div class="p-meta">
+      <div class="p-name">CFO / Gerente Administrativo / Ger. de TI</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">Guiando — Gestão de Telecom</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Pago faturas de telecom todo mês sem saber se estou sendo cobrado corretamente. Não tenho visibilidade de quanto cada área consome e não consigo identificar planos obsoletos ou cobranças indevidas."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Guiando TEM</span><span class="tag">Auditoria de Faturas</span><span class="tag">Gestão de Ativos Telecom</span><span class="tag">BPO Telecom</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"O Grupo Boticário economizou mais de R$15MM em despesas de telecom com a Guiando — auditando cobranças indevidas e eliminando planos obsoletos. Empresas do seu porte normalmente têm entre 10% e 20% de desperdício nas faturas de telecom sem saber. Vale 20 min para mostrar como identificamos isso?"</div>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togAny(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body">
+        <div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">Gerente de TI / Telecom</div>
+            <div class="inf-papel">Gestiona os ativos de telecom no dia a dia. Valida a integração da Guiando com o ERP e os sistemas internos.</div>
+            <div class="inf-dica">💡 Envolva o Ger. de TI desde o início — ele conhece os contratos e valida a acuracidade do inventário. Aliado forte quando percebe o volume de trabalho manual que a Guiando elimina.</div>
+          </div>
+        </div>
+        <div class="inf-row">
+          <div class="inf-av">ADM</div>
+          <div>
+            <div class="inf-name">Gerente Administrativo / Controller</div>
+            <div class="inf-papel">Responsável pelo contas a pagar e pela conciliação das faturas de telecom. Usuário direto da plataforma.</div>
+            <div class="inf-dica">💡 O Ger. Adm. é o que mais sofre com o processo manual. Mostre o antes e depois da automação — ele vira campeão interno e leva o CFO.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div>
 <div class="sol-block">
   <div class="sol-hd" onclick="tog(this)">
     <span class="sol-title">🔒 Cybersecurity Solutions — SOC, LGPD, Proteção de Dados de Clientes</span>
@@ -3990,7 +4362,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="lbl">Soluções</div>
     <div class="tags"><span class="tag">Omnichannel</span><span class="tag">Monitoria com IA</span><span class="tag">Bots</span></div>
     <div class="lbl">Gancho</div>
-    <div class="gancho">"Com omnichannel, todos os canais em uma tela — histórico unificado e monitoria de 100% dos atendimentos com IA. Vale 20 min?"</div>
+    <div class="gancho">"77% dos consumidores querem uma experiência unificada — mas a maioria das empresas ainda responde por canal separado sem histórico. Com omnichannel, todos os canais em uma tela e monitoria de 100% dos atendimentos com IA. Vale 20 min?"</div>
     <div class="inf-card">
       <div class="inf-hd" onclick="togI(this)">
         <span class="inf-label">⚡ Influenciadores nesta venda</span>
@@ -4014,6 +4386,56 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     </div>
   </div>
 </div></div>
+</div>
+<div class="p-card">
+  <div class="p-hd" onclick="togAny(this)">
+    <div class="p-av">BPO</div>
+    <div class="p-meta">
+      <div class="p-name">Diretor de Operações / Gerente de BPO</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">Customer Experience — BPO</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Custo por interação crescendo mais rápido que a receita. Demandas repetitivas consomem agentes caros. Qualidade varia por turno e monitoro menos de 2% das chamadas."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Chatbot com IA para BPO</span><span class="tag">Monitoria de Qualidade 100%</span><span class="tag">URA Inteligente</span><span class="tag">Omnichannel</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"BPOs que crescem sem controlar custo por interação perdem margem em escala. Nossa plataforma absorve o volume repetitivo, estabiliza o SLA e monitora 100% dos atendimentos — sem aumentar headcount. Atendemos a Credsystem com URA que processa 1,2 milhão de ligações/mês. Vale 20 min?"</div>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togAny(this)">
+        <span class="inf-label">&#9889; Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">&#9662;</span>
+      </div>
+      <div class="inf-body">
+        <div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">Gerente de TI / CTO</div>
+            <div class="inf-papel">Valida integração do chatbot com CRM, ERP e sistemas de back-office do BPO.</div>
+            <div class="inf-dica">&#128161; Mostre que a plataforma adiciona camada de automacao sem substituir os sistemas atuais.</div>
+          </div>
+        </div>
+        <div class="inf-row">
+          <div class="inf-av">CFO</div>
+          <div>
+            <div class="inf-name">CFO / Diretor Financeiro</div>
+            <div class="inf-papel">Aprova o investimento. ROI direto: custo por interacao humana versus automatizada.</div>
+            <div class="inf-dica">&#128161; Atendimento humano custa em media 20x mais que o autoatendimento — mostre esse numero para o CFO.</div>
+          </div>
+        </div>
+        <div class="inf-row">
+          <div class="inf-av">QUA</div>
+          <div>
+            <div class="inf-name">Gestor de Qualidade / Compliance</div>
+            <div class="inf-papel">Valida que a monitoria com IA atende requisitos de auditoria, LGPD e SLA contratual.</div>
+            <div class="inf-dica">&#128161; Monitoria de 100% com logs auditaveis resolve a principal objecao de compliance do contratante.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="sol-block">
   <div class="sol-hd" onclick="tog(this)">
@@ -4059,7 +4481,49 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     </div>
   </div>
 </div></div>
-</div>
+
+<div class="p-card">
+  <div class="p-hd" onclick="togAny(this)">
+    <div class="p-av">CFO</div>
+    <div class="p-meta">
+      <div class="p-name">CFO / Gerente Administrativo / Ger. de TI</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">Guiando — Gestão de Telecom</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Pago faturas de telecom todo mês sem saber se estou sendo cobrado corretamente. Não tenho visibilidade de quanto cada área consome e não consigo identificar planos obsoletos ou cobranças indevidas."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Guiando TEM</span><span class="tag">Auditoria de Faturas</span><span class="tag">Gestão de Ativos Telecom</span><span class="tag">BPO Telecom</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"O Grupo Boticário economizou mais de R$15MM em despesas de telecom com a Guiando — auditando cobranças indevidas e eliminando planos obsoletos. Empresas do seu porte normalmente têm entre 10% e 20% de desperdício nas faturas de telecom sem saber. Vale 20 min para mostrar como identificamos isso?"</div>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togAny(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body">
+        <div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">Gerente de TI / Telecom</div>
+            <div class="inf-papel">Gestiona os ativos de telecom no dia a dia. Valida a integração da Guiando com o ERP e os sistemas internos.</div>
+            <div class="inf-dica">💡 Envolva o Ger. de TI desde o início — ele conhece os contratos e valida a acuracidade do inventário. Aliado forte quando percebe o volume de trabalho manual que a Guiando elimina.</div>
+          </div>
+        </div>
+        <div class="inf-row">
+          <div class="inf-av">ADM</div>
+          <div>
+            <div class="inf-name">Gerente Administrativo / Controller</div>
+            <div class="inf-papel">Responsável pelo contas a pagar e pela conciliação das faturas de telecom. Usuário direto da plataforma.</div>
+            <div class="inf-dica">💡 O Ger. Adm. é o que mais sofre com o processo manual. Mostre o antes e depois da automação — ele vira campeão interno e leva o CFO.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div>
 <div class="sol-block">
   <div class="sol-hd" onclick="tog(this)">
     <span class="sol-title">🖥️ IT Solutions — Cloud, Outsourcing TI, Observabilidade</span>
@@ -4161,7 +4625,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="lbl">Dor</div>
     <div class="dor">"Crescemos mas os processos internos não acompanharam. Retrabalho alto e qualidade de entrega inconsistente entre equipes."</div>
     <div class="lbl">Soluções</div>
-    <div class="tags"><span class="tag">Consultoria em Processos</span><span class="tag">Gestão de Projetos</span><span class="tag">Outsourcing TI</span></div>
+    <div class="tags"><span class="tag">Consultoria em Processos</span><span class="tag">Implantação ERP/SAP</span><span class="tag">PMO</span><span class="tag">Outsourcing GP / TI</span></div>
     <div class="lbl">Gancho</div>
     <div class="gancho">"A Selbetti mapeia e padroniza os processos de entrega sem parar a operação — qualidade consistente e retrabalho eliminado. Posso te mostrar cases?"</div>
     <div class="inf-card">
@@ -4336,7 +4800,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
         <span class="chev" style="color:var(--color-text-success)">▾</span>
       </div>
       <div class="pitch-body">
-        <div class="pitch-text">[Nome], CEO de empresa de serviços normalmente convive com quatro pressões que se alimentam: processos internos manuais que escalam pessoas em vez de eficiência; qualidade de entrega inconsistente entre equipes à medida que a firma cresce; falta de visibilidade em tempo real sobre quais contas estão em risco de churn; e dados de clientes que precisam ser protegidos por LGPD ou a reputação da firma vai junto.<br><br>A Selbetti endereça as quatro: RPA e ECM automatizam processos administrativos; consultoria de processos padroniza a entrega com gestão de mudança incluída; Interactive Intelligence coloca visibilidade real de performance de contas na sua mão; e SOC 24×7 protege os dados de clientes e garante conformidade LGPD.<br><br>Qual dessas quatro está mais urgente para você agora?</div>
+        <div class="pitch-text">[Nome], CEO de empresa de serviços normalmente convive com quatro pressões que se alimentam: processos internos manuais que escalam pessoas em vez de eficiência; qualidade de entrega inconsistente entre equipes; falta de visibilidade sobre quais contas estão em risco; e dados de clientes que precisam ser protegidos ou a reputação da firma vai junto.<br><br>A Selbetti endereça as quatro: RPA e ECM automatizam processos administrativos; consultoria de processos padroniza a entrega — transformamos a TI da WLM de suporte para estratégica e conduzimos o plano estratégico da Fibra; Interactive Intelligence coloca visibilidade real de performance de contas na sua mão; e SOC 24×7 com LGPD protege os dados de clientes.<br><br>Qual dessas quatro está mais urgente para você agora?</div>
       </div>
     </div>
 <div class="script-hint">💬 <strong>Como usar:</strong> Copie o pitch acima, cole no chat do Claude e peça para transformar em script de cold call com objeções para essa persona.</div>
@@ -4696,7 +5160,49 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     </div>
   </div>
 </div></div>
-</div>
+
+<div class="p-card">
+  <div class="p-hd" onclick="togAny(this)">
+    <div class="p-av">CFO</div>
+    <div class="p-meta">
+      <div class="p-name">CFO / Gerente Administrativo / Ger. de TI</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">Guiando — Gestão de Telecom</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Pago faturas de telecom todo mês sem saber se estou sendo cobrado corretamente. Não tenho visibilidade de quanto cada área consome e não consigo identificar planos obsoletos ou cobranças indevidas."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Guiando TEM</span><span class="tag">Auditoria de Faturas</span><span class="tag">Gestão de Ativos Telecom</span><span class="tag">BPO Telecom</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"O Grupo Boticário economizou mais de R$15MM em despesas de telecom com a Guiando — auditando cobranças indevidas e eliminando planos obsoletos. Empresas do seu porte normalmente têm entre 10% e 20% de desperdício nas faturas de telecom sem saber. Vale 20 min para mostrar como identificamos isso?"</div>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togAny(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body">
+        <div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">Gerente de TI / Telecom</div>
+            <div class="inf-papel">Gestiona os ativos de telecom no dia a dia. Valida a integração da Guiando com o ERP e os sistemas internos.</div>
+            <div class="inf-dica">💡 Envolva o Ger. de TI desde o início — ele conhece os contratos e valida a acuracidade do inventário. Aliado forte quando percebe o volume de trabalho manual que a Guiando elimina.</div>
+          </div>
+        </div>
+        <div class="inf-row">
+          <div class="inf-av">ADM</div>
+          <div>
+            <div class="inf-name">Gerente Administrativo / Controller</div>
+            <div class="inf-papel">Responsável pelo contas a pagar e pela conciliação das faturas de telecom. Usuário direto da plataforma.</div>
+            <div class="inf-dica">💡 O Ger. Adm. é o que mais sofre com o processo manual. Mostre o antes e depois da automação — ele vira campeão interno e leva o CFO.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div>
 <div class="sol-block">
   <div class="sol-hd" onclick="tog(this)">
     <span class="sol-title">🖥️ IT Solutions — Cloud, Outsourcing TI, Observabilidade</span>
@@ -4805,7 +5311,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="lbl">Dor</div>
     <div class="dor">"Cooperativa ou trading cresceu mas os processos administrativos e logísticos nunca foram formalizados. Retrabalho alto e decisão sem dado."</div>
     <div class="lbl">Soluções</div>
-    <div class="tags"><span class="tag">Consultoria em Processos</span><span class="tag">Gestão de Projetos</span><span class="tag">Outsourcing TI</span></div>
+    <div class="tags"><span class="tag">Consultoria em Processos</span><span class="tag">PMO / BPMO</span><span class="tag">ERP/CRM</span><span class="tag">Outsourcing GP</span></div>
     <div class="lbl">Gancho</div>
     <div class="gancho">"A Selbetti mapeia e formaliza processos de cooperativa e trading sem parar a operação — com foco nos gargalos que mais impactam a safra. Vale 20 min?"</div>
     <div class="inf-card">
@@ -4968,7 +5474,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
         <span class="chev" style="color:var(--color-text-success)">▾</span>
       </div>
       <div class="pitch-body">
-        <div class="pitch-text">[Nome], o administrativo-financeiro do agronegócio tem três ineficiências que se intensificam na safra: contratos de compra e venda de grãos que ainda circulam em papel gerando risco jurídico e lentidão; conciliação financeira manual que consome dias do time em período de alto movimento; e equipamentos que quebram exatamente quando a operação mais precisa — durante o pico.<br><br>A Selbetti resolve as três: S-SIGN digitaliza e formaliza contratos agrícolas com validade jurídica; RPA automatiza conciliação e processamento de NF; e locação garante equipamentos sempre atualizados com manutenção inclusa e SLA de substituição.<br><br>Qual das três está mais urgente agora?</div>
+        <div class="pitch-text">[Nome], o administrativo-financeiro do agronegócio tem quatro ineficiências que se intensificam na safra: contratos de grãos em papel; conciliação financeira manual que consome dias; equipamentos que quebram no pico; e faturas de telecom — links rurais, ramais, circuitos — pagas sem visibilidade de cobranças indevidas.<br><br>A Selbetti resolve as quatro: S-SIGN digitaliza contratos agrícolas com validade jurídica; RPA automatiza conciliação e processamento de NF; locação garante equipamentos com manutenção e SLA de substituição — e implantamos SAP na Coonagro com resultados contábeis no 5º dia útil; e a Guiando audita as faturas de telecom automaticamente, identificando cobranças indevidas e planos obsoletos.<br><br>Qual das quatro está mais urgente agora?</div>
       </div>
     </div>
 <div class="script-hint">💬 <strong>Como usar:</strong> Copie o pitch acima, cole no chat do Claude e peça para transformar em script de cold call com objeções para essa persona.</div>
@@ -5046,7 +5552,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="lbl">Soluções</div>
     <div class="tags"><span class="tag">Omnichannel</span><span class="tag">Bots de Captação</span><span class="tag">Discador Automático</span></div>
     <div class="lbl">Gancho</div>
-    <div class="gancho">"Com omnichannel e bots, candidato ao vestibular recebe contato em menos de 1 minuto por qualquer canal — taxa de conversão em matrícula pode subir 20–30%. Vale 20 min?"</div>
+    <div class="gancho">"Com omnichannel e bots, candidato ao vestibular recebe contato em menos de 1 minuto por qualquer canal — taxa de conversão em matrícula pode subir 20–30%. Me Poupe! implementou bot via WhatsApp com 72% de retenção e CSAT de 82% para sua base de 25 milhões de usuários. Vale 20 min?"</div>
     <div class="inf-card">
       <div class="inf-hd" onclick="togI(this)">
         <span class="inf-label">⚡ Influenciadores nesta venda</span>
@@ -5109,7 +5615,49 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     </div>
   </div>
 </div></div>
-</div>
+
+<div class="p-card">
+  <div class="p-hd" onclick="togAny(this)">
+    <div class="p-av">CFO</div>
+    <div class="p-meta">
+      <div class="p-name">CFO / Gerente Administrativo / Ger. de TI</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">Guiando — Gestão de Telecom</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Pago faturas de telecom todo mês sem saber se estou sendo cobrado corretamente. Não tenho visibilidade de quanto cada área consome e não consigo identificar planos obsoletos ou cobranças indevidas."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Guiando TEM</span><span class="tag">Auditoria de Faturas</span><span class="tag">Gestão de Ativos Telecom</span><span class="tag">BPO Telecom</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"O Grupo Boticário economizou mais de R$15MM em despesas de telecom com a Guiando — auditando cobranças indevidas e eliminando planos obsoletos. Empresas do seu porte normalmente têm entre 10% e 20% de desperdício nas faturas de telecom sem saber. Vale 20 min para mostrar como identificamos isso?"</div>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togAny(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body">
+        <div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">Gerente de TI / Telecom</div>
+            <div class="inf-papel">Gestiona os ativos de telecom no dia a dia. Valida a integração da Guiando com o ERP e os sistemas internos.</div>
+            <div class="inf-dica">💡 Envolva o Ger. de TI desde o início — ele conhece os contratos e valida a acuracidade do inventário. Aliado forte quando percebe o volume de trabalho manual que a Guiando elimina.</div>
+          </div>
+        </div>
+        <div class="inf-row">
+          <div class="inf-av">ADM</div>
+          <div>
+            <div class="inf-name">Gerente Administrativo / Controller</div>
+            <div class="inf-papel">Responsável pelo contas a pagar e pela conciliação das faturas de telecom. Usuário direto da plataforma.</div>
+            <div class="inf-dica">💡 O Ger. Adm. é o que mais sofre com o processo manual. Mostre o antes e depois da automação — ele vira campeão interno e leva o CFO.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div>
 <div class="sol-block">
   <div class="sol-hd" onclick="tog(this)">
     <span class="sol-title">⚙️ Process Solutions — RPA, BPMS, S-SIGN, ECM</span>
@@ -5340,7 +5888,49 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     </div>
   </div>
 </div></div>
-</div>
+
+<div class="p-card">
+  <div class="p-hd" onclick="togAny(this)">
+    <div class="p-av">CFO</div>
+    <div class="p-meta">
+      <div class="p-name">CFO / Gerente Administrativo / Ger. de TI</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">Guiando — Gestão de Telecom</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Pago faturas de telecom todo mês sem saber se estou sendo cobrado corretamente. Não tenho visibilidade de quanto cada área consome e não consigo identificar planos obsoletos ou cobranças indevidas."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Guiando TEM</span><span class="tag">Auditoria de Faturas</span><span class="tag">Gestão de Ativos Telecom</span><span class="tag">BPO Telecom</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"O Grupo Boticário economizou mais de R$15MM em despesas de telecom com a Guiando — auditando cobranças indevidas e eliminando planos obsoletos. Empresas do seu porte normalmente têm entre 10% e 20% de desperdício nas faturas de telecom sem saber. Vale 20 min para mostrar como identificamos isso?"</div>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togAny(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body">
+        <div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">Gerente de TI / Telecom</div>
+            <div class="inf-papel">Gestiona os ativos de telecom no dia a dia. Valida a integração da Guiando com o ERP e os sistemas internos.</div>
+            <div class="inf-dica">💡 Envolva o Ger. de TI desde o início — ele conhece os contratos e valida a acuracidade do inventário. Aliado forte quando percebe o volume de trabalho manual que a Guiando elimina.</div>
+          </div>
+        </div>
+        <div class="inf-row">
+          <div class="inf-av">ADM</div>
+          <div>
+            <div class="inf-name">Gerente Administrativo / Controller</div>
+            <div class="inf-papel">Responsável pelo contas a pagar e pela conciliação das faturas de telecom. Usuário direto da plataforma.</div>
+            <div class="inf-dica">💡 O Ger. Adm. é o que mais sofre com o processo manual. Mostre o antes e depois da automação — ele vira campeão interno e leva o CFO.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div>
 <div class="sol-block">
   <div class="sol-hd" onclick="tog(this)">
     <span class="sol-title">🔒 Cybersecurity Solutions — SOC, LGPD, Proteção de Dados de Alunos</span>
@@ -5449,7 +6039,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="lbl">Dor</div>
     <div class="dor">"Processos acadêmicos e administrativos ineficientes. IES cresceu mas a estrutura operacional não acompanhou. Custos administrativos crescendo."</div>
     <div class="lbl">Soluções</div>
-    <div class="tags"><span class="tag">Consultoria em Processos</span><span class="tag">Gestão de Projetos</span><span class="tag">Outsourcing TI</span></div>
+    <div class="tags"><span class="tag">Consultoria em Processos</span><span class="tag">PMO</span><span class="tag">Reestruturação de Processos</span><span class="tag">Outsourcing GP / TI</span></div>
     <div class="lbl">Gancho</div>
     <div class="gancho">"A Selbetti mapeia e reestrutura processos acadêmicos e administrativos sem parar a operação da IES. Atendemos IES de diferentes portes nessa jornada. Vale 20 min?"</div>
     <div class="inf-card">
@@ -5619,7 +6209,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
         <span class="chev" style="color:var(--color-text-success)">▾</span>
       </div>
       <div class="pitch-body">
-        <div class="pitch-text">[Nome], TI de IES tem três pressões específicas que não existem em outras verticais: sistema acadêmico que não pode cair em períodos de matrícula e prova — exatamente quando a demanda explode; dados de alunos que são sensíveis pela LGPD e muitas IES ainda não fizeram o mapeamento; e laboratórios com equipamentos que ficam obsoletos rapidamente com capex de renovação a cada 3 anos.<br><br>A Selbetti cobre as três: ITO 24×7 garante suporte especializado para o sistema acadêmico com SLA; SOC e mapeamento LGPD protegem os dados de alunos; e locação de equipamentos transforma o capex de laboratório em opex mensal com equipamentos sempre atualizados.<br><br>Qual das três está mais urgente para você agora?</div>
+        <div class="pitch-text">[Nome], TI de IES tem quatro pressões específicas: sistema acadêmico que não pode cair em matrícula e prova; dados de alunos sensíveis pela LGPD sem mapeamento; laboratórios com capex de renovação a cada 3 anos; e faturas de telecom de múltiplos campi pagas sem visibilidade de cobranças indevidas ou links subutilizados.<br><br>A Selbetti cobre as quatro: ITO 24×7 garante suporte para o sistema acadêmico com SLA; SOC e mapeamento LGPD protegem os dados de alunos; locação transforma o capex de laboratório em opex mensal; e a Guiando audita automaticamente as faturas de telecom de todos os campi — IES do seu porte normalmente têm entre 10% e 20% de desperdício nessa linha.<br><br>Qual das quatro está mais urgente para você agora?</div>
       </div>
     </div>
 <div class="script-hint">💬 <strong>Como usar:</strong> Copie o pitch acima, cole no chat do Claude e peça para transformar em script de cold call com objeções para essa persona.</div>
@@ -5677,7 +6267,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
         <span class="chev" style="color:var(--color-text-success)">▾</span>
       </div>
       <div class="pitch-body">
-        <div class="pitch-text">[Nome], Diretor Acadêmico ou Reitor normalmente convive com três pressões que afetam diretamente o resultado da IES: taxa de conversão em matrícula baixa porque os leads de vestibular não são abordados com agilidade; falta de visibilidade em tempo real sobre evasão, inadimplência e performance por curso — os dados chegam atrasados e fragmentados; e processos acadêmicos e administrativos que nunca foram formalizados à medida que a IES cresceu.<br><br>A Selbetti endereça as três: omnichannel e bots aumentam a taxa de conversão em matrícula abordando o candidato em até 1 minuto; Interactive Intelligence coloca dados reais de evasão e performance na sua mão em linguagem natural; e consultoria de processos reestrutura a operação sem parar o semestre.<br><br>Qual das três está mais crítica para você agora?</div>
+        <div class="pitch-text">[Nome], Diretor Acadêmico ou Reitor normalmente convive com três pressões que afetam diretamente o resultado da IES: taxa de conversão em matrícula baixa porque os leads de vestibular não são abordados com agilidade; falta de visibilidade em tempo real sobre evasão, inadimplência e performance por curso; e processos acadêmicos que nunca foram formalizados à medida que a IES cresceu.<br><br>A Selbetti endereça as três: omnichannel e bots aumentam a conversão em matrícula abordando o candidato em até 1 minuto — a Me Poupe! implementou bot via WhatsApp com CSAT de 82% e retenção de 72%; Interactive Intelligence coloca dados reais de evasão e performance na sua mão; e consultoria de processos reestrutura a operação sem parar o semestre — reduzimos 50% o tempo de publicação de cotas na Elos com reestruturação de processos.<br><br>Qual das três está mais crítica para você agora?</div>
       </div>
     </div>
 <div class="script-hint">💬 <strong>Como usar:</strong> Copie o pitch acima, cole no chat do Claude e peça para transformar em script de cold call com objeções para essa persona.</div>
@@ -5772,7 +6362,49 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     </div>
   </div>
 </div></div>
-</div>
+
+<div class="p-card">
+  <div class="p-hd" onclick="togAny(this)">
+    <div class="p-av">CFO</div>
+    <div class="p-meta">
+      <div class="p-name">CFO / Gerente Administrativo / Ger. de TI</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">Guiando — Gestão de Telecom</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Pago faturas de telecom todo mês sem saber se estou sendo cobrado corretamente. Não tenho visibilidade de quanto cada área consome e não consigo identificar planos obsoletos ou cobranças indevidas."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Guiando TEM</span><span class="tag">Auditoria de Faturas</span><span class="tag">Gestão de Ativos Telecom</span><span class="tag">BPO Telecom</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"O Grupo Boticário economizou mais de R$15MM em despesas de telecom com a Guiando — auditando cobranças indevidas e eliminando planos obsoletos. Empresas do seu porte normalmente têm entre 10% e 20% de desperdício nas faturas de telecom sem saber. Vale 20 min para mostrar como identificamos isso?"</div>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togAny(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body">
+        <div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">Gerente de TI / Telecom</div>
+            <div class="inf-papel">Gestiona os ativos de telecom no dia a dia. Valida a integração da Guiando com o ERP e os sistemas internos.</div>
+            <div class="inf-dica">💡 Envolva o Ger. de TI desde o início — ele conhece os contratos e valida a acuracidade do inventário. Aliado forte quando percebe o volume de trabalho manual que a Guiando elimina.</div>
+          </div>
+        </div>
+        <div class="inf-row">
+          <div class="inf-av">ADM</div>
+          <div>
+            <div class="inf-name">Gerente Administrativo / Controller</div>
+            <div class="inf-papel">Responsável pelo contas a pagar e pela conciliação das faturas de telecom. Usuário direto da plataforma.</div>
+            <div class="inf-dica">💡 O Ger. Adm. é o que mais sofre com o processo manual. Mostre o antes e depois da automação — ele vira campeão interno e leva o CFO.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div>
 <div class="sol-block">
   <div class="sol-hd" onclick="tog(this)">
     <span class="sol-title">📊 Data & AI — Interactive Intelligence, MDM, Quality Manager</span>
@@ -5793,7 +6425,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="lbl">Soluções</div>
     <div class="tags"><span class="tag">Interactive Intelligence</span><span class="tag">MDM Financeiro</span></div>
     <div class="lbl">Gancho</div>
-    <div class="gancho">"Com Interactive Intelligence, sua equipe faz perguntas em linguagem natural sobre dados de clientes e risco — sem depender de TI para cada relatório. Vale 20 min?"</div>
+    <div class="gancho">"Com Interactive Intelligence, sua equipe faz perguntas em linguagem natural sobre dados de clientes e risco — sem depender de TI. Somos parceiros Databricks com cases em Financeiro e Seguros. Vale 20 min?"</div>
     <div class="inf-card">
       <div class="inf-hd" onclick="togI(this)">
         <span class="inf-label">⚡ Influenciadores nesta venda</span>
@@ -5832,7 +6464,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="lbl">Soluções</div>
     <div class="tags"><span class="tag">Interactive Intelligence</span><span class="tag">Quality Manager</span><span class="tag">MDM</span></div>
     <div class="lbl">Gancho</div>
-    <div class="gancho">"A Selbetti implementa IA sobre os dados da sua operação em semanas — sem trocar os sistemas atuais. Posso mostrar como cooperativas e seguradoras da sua regional já fazem isso?"</div>
+    <div class="gancho">"A Selbetti implementa IA sobre os dados da sua operação em semanas — sem trocar os sistemas atuais. Somos parceiros Databricks com +40 profissionais certificados e cases em Ailos e Seguros Unimed. Posso mostrar?"</div>
     <div class="inf-card">
       <div class="inf-hd" onclick="togI(this)">
         <span class="inf-label">⚡ Influenciadores nesta venda</span>
@@ -6007,7 +6639,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="lbl">Soluções</div>
     <div class="tags"><span class="tag">URA Inteligente</span><span class="tag">Bots Financeiros</span><span class="tag">Monitoria com IA</span></div>
     <div class="lbl">Gancho</div>
-    <div class="gancho">"Bots resolvem 60–70% das perguntas de saldo e extrato e monitoria com IA avalia 100% dos atendimentos sem supervisor ouvindo tudo. NPS sobe. Vale 20 min?"</div>
+    <div class="gancho">"A Credsystem processava 1,2 milhão de ligações/mês com atendimento humano custando 20× mais que o autoatendimento. Com nossa URA Inteligente, a retenção saltou de 70% para 74%. Você também tem volume repetitivo consumindo agente caro? Vale 20 min?"</div>
     <div class="inf-card">
       <div class="inf-hd" onclick="togI(this)">
         <span class="inf-label">⚡ Influenciadores nesta venda</span>
@@ -6053,7 +6685,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="lbl">Soluções</div>
     <div class="tags"><span class="tag">Monitoria com IA</span><span class="tag">Omnichannel</span></div>
     <div class="lbl">Gancho</div>
-    <div class="gancho">"Monitoria com IA avalia 100% dos atendimentos e identifica automaticamente os motivos de reclamação antes que virem processo no BACEN. Vale 20 min?"</div>
+    <div class="gancho">"Empresas monitoram em média apenas 2% das chamadas — 98% sem análise. Nossa monitoria com IA cobre 100% dos atendimentos e identifica o que gera reclamação no BACEN antes de virar processo. Vale 20 min?"</div>
     <div class="inf-card">
       <div class="inf-hd" onclick="togI(this)">
         <span class="inf-label">⚡ Influenciadores nesta venda</span>
@@ -6077,6 +6709,48 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     </div>
   </div>
 </div></div>
+</div>
+<div class="p-card">
+  <div class="p-hd" onclick="togAny(this)">
+    <div class="p-av">BPO</div>
+    <div class="p-meta">
+      <div class="p-name">Diretor de Operações / Gerente de BPO</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">Customer Experience — BPO</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Custo por interação crescendo mais rápido que a receita. Demandas repetitivas consomem agentes caros. Monitoro menos de 2% das chamadas."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Chatbot com IA para BPO</span><span class="tag">Monitoria de Qualidade 100%</span><span class="tag">URA Inteligente</span><span class="tag">Omnichannel</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"BPOs que crescem sem controlar custo por interação perdem margem em escala. Nossa plataforma absorve o volume repetitivo, estabiliza o SLA e monitora 100% dos atendimentos sem aumentar headcount. Atendemos a Credsystem com URA de 1,2M de ligações/mês. Vale 20 min?"</div>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togAny(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body">
+        <div class="inf-row">
+          <div class="inf-av">CFO</div>
+          <div>
+            <div class="inf-name">CFO / Diretor Financeiro</div>
+            <div class="inf-papel">Aprova o investimento. Atendimento humano custa 20× mais que o autoatendimento.</div>
+            <div class="inf-dica">💡 Mostre o custo por interação humana versus automatizada — diferença de 20× é o argumento principal.</div>
+          </div>
+        </div>
+        <div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">Gerente de TI / CTO</div>
+            <div class="inf-papel">Valida integração do chatbot com CRM, ERP e sistemas de back-office. Papel obrigatório.</div>
+            <div class="inf-dica">💡 Plataforma adiciona automação sobre os sistemas existentes — não substitui nada.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="sol-block">
   <div class="sol-hd" onclick="tog(this)">
@@ -6167,7 +6841,49 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     </div>
   </div>
 </div></div>
-</div>
+
+<div class="p-card">
+  <div class="p-hd" onclick="togAny(this)">
+    <div class="p-av">CFO</div>
+    <div class="p-meta">
+      <div class="p-name">CFO / Gerente Administrativo / Ger. de TI</div>
+      <div class="p-role-row"><span class="rb rb-dec">Decisor</span><span class="rec-tag">Guiando — Gestão de Telecom</span></div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="p-body">
+    <div class="lbl">Dor</div>
+    <div class="dor">"Pago faturas de telecom todo mês sem saber se estou sendo cobrado corretamente. Não tenho visibilidade de quanto cada área consome e não consigo identificar planos obsoletos ou cobranças indevidas."</div>
+    <div class="lbl">Soluções</div>
+    <div class="tags"><span class="tag">Guiando TEM</span><span class="tag">Auditoria de Faturas</span><span class="tag">Gestão de Ativos Telecom</span><span class="tag">BPO Telecom</span></div>
+    <div class="lbl">Gancho</div>
+    <div class="gancho">"O Grupo Boticário economizou mais de R$15MM em despesas de telecom com a Guiando — auditando cobranças indevidas e eliminando planos obsoletos. Empresas do seu porte normalmente têm entre 10% e 20% de desperdício nas faturas de telecom sem saber. Vale 20 min para mostrar como identificamos isso?"</div>
+    <div class="inf-card">
+      <div class="inf-hd" onclick="togAny(this)">
+        <span class="inf-label">⚡ Influenciadores nesta venda</span>
+        <span class="chev" style="color:var(--color-text-warning)">▾</span>
+      </div>
+      <div class="inf-body">
+        <div class="inf-row">
+          <div class="inf-av">TI</div>
+          <div>
+            <div class="inf-name">Gerente de TI / Telecom</div>
+            <div class="inf-papel">Gestiona os ativos de telecom no dia a dia. Valida a integração da Guiando com o ERP e os sistemas internos.</div>
+            <div class="inf-dica">💡 Envolva o Ger. de TI desde o início — ele conhece os contratos e valida a acuracidade do inventário. Aliado forte quando percebe o volume de trabalho manual que a Guiando elimina.</div>
+          </div>
+        </div>
+        <div class="inf-row">
+          <div class="inf-av">ADM</div>
+          <div>
+            <div class="inf-name">Gerente Administrativo / Controller</div>
+            <div class="inf-papel">Responsável pelo contas a pagar e pela conciliação das faturas de telecom. Usuário direto da plataforma.</div>
+            <div class="inf-dica">💡 O Ger. Adm. é o que mais sofre com o processo manual. Mostre o antes e depois da automação — ele vira campeão interno e leva o CFO.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div>
 <div class="sol-block">
   <div class="sol-hd" onclick="tog(this)">
     <span class="sol-title">🖨️ Print Solutions — MPS, Multifuncionais</span>
@@ -6224,7 +6940,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="lbl">Dor</div>
     <div class="dor">"Processos internos ineficientes em um setor cada vez mais pressionado por fintechs e bancos digitais. Custo operacional alto e velocidade de inovação baixa."</div>
     <div class="lbl">Soluções</div>
-    <div class="tags"><span class="tag">Consultoria em Processos</span><span class="tag">Gestão de Projetos</span><span class="tag">Outsourcing TI</span></div>
+    <div class="tags"><span class="tag">Consultoria em Processos</span><span class="tag">PMO / BPMO</span><span class="tag">Governança TI</span><span class="tag">Outsourcing GP / TI</span></div>
     <div class="lbl">Gancho</div>
     <div class="gancho">"A Selbetti mapeia e reestrutura processos financeiros críticos sem parar a operação — com foco nos gargalos que mais impactam custo operacional e experiência do cliente. Vale 20 min?"</div>
     <div class="inf-card">
@@ -6263,7 +6979,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div class="lbl">Dor</div>
     <div class="dor">"Precisamos de especialistas em tecnologia financeira para projetos críticos mas o mercado de TI para o setor financeiro é escasso e caro."</div>
     <div class="lbl">Soluções</div>
-    <div class="tags"><span class="tag">Outsourcing TI Financeiro</span><span class="tag">Alocação de Profissionais</span></div>
+    <div class="tags"><span class="tag">Outsourcing GP / TI</span><span class="tag">CIO as a Service</span><span class="tag">PMO</span><span class="tag">Alocação de Profissionais</span></div>
     <div class="lbl">Gancho</div>
     <div class="gancho">"Alocação de profissionais de TI especializados em financeiro — recurso certo, projeto certo, sem CLT e sem o risco de contratação em mercado escasso. Vale 20 min?"</div>
     <div class="inf-card">
@@ -6335,7 +7051,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
         <span class="chev" style="color:var(--color-text-success)">▾</span>
       </div>
       <div class="pitch-body">
-        <div class="pitch-text">[Nome], CEO de instituição financeira normalmente convive com três pressões estratégicas ao mesmo tempo: risco regulatório crescente — BACEN e SUSEP exigem controles cada vez mais rígidos e a multa por não conformidade é pesada; fintechs e bancos digitais avançando com IA enquanto sua operação ainda depende de processos manuais; e custo operacional alto que corrói a margem em um setor cada vez mais competitivo.<br><br>A Selbetti endereça as três: SOC 24×7 garante os controles de segurança que os auditores do BACEN exigem; Interactive Intelligence coloca IA sobre os dados da sua operação em semanas, sem trocar os sistemas atuais; e consultoria de processos reestrutura os gargalos operacionais com foco direto em redução de custo.<br><br>Qual dessas três está mais urgente para você agora?</div>
+        <div class="pitch-text">[Nome], CEO de instituição financeira normalmente convive com três pressões estratégicas ao mesmo tempo: risco regulatório crescente — BACEN e SUSEP exigem controles cada vez mais rígidos e a multa por não conformidade é pesada; fintechs e bancos digitais avançando com IA enquanto sua operação ainda depende de processos manuais; e custo operacional alto que corrói a margem em um setor cada vez mais competitivo.<br><br>A Selbetti endereça as três: SOC 24×7 garante os controles de segurança que os auditores do BACEN exigem; Interactive Intelligence coloca IA sobre os dados da sua operação em semanas, sem trocar os sistemas atuais; e consultoria de processos reestrutura os gargalos operacionais com foco direto em redução de custo — reduzimos 40% dos custos operacionais na Cresol e 50% do tempo de publicação de cotas na Elos.<br><br>Qual dessas três está mais urgente para você agora?</div>
       </div>
     </div>
 <div class="script-hint">💬 <strong>Como usar:</strong> Copie o pitch acima, cole no chat do Claude e peça para transformar em script de cold call com objeções para essa persona.</div>
@@ -6381,7 +7097,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
         <span class="chev" style="color:var(--color-text-success)">▾</span>
       </div>
       <div class="pitch-body">
-        <div class="pitch-text">[Nome], CFO de instituição financeira normalmente tem dois custos operacionais que crescem em silêncio: back-office de conciliação de transações manual — consome equipe inteira, ainda gera erro de lançamento e os relatórios chegam atrasados para a decisão; e capex pesado em equipamentos de agências e escritórios que ficam obsoletos antes de amortizar, em um setor com crescente pressão de custo.<br><br>A Selbetti resolve os dois: RPA automatiza a conciliação de transações financeiras com zero digitação e erro detectado em tempo real; e locação de equipamentos transforma capex em opex mensal previsível com manutenção inclusa.<br><br>Qual das duas frentes está mais crítica para você agora?</div>
+        <div class="pitch-text">[Nome], CFO de instituição financeira normalmente tem três custos operacionais que crescem em silêncio: conciliação de transações manual que consome equipe e gera erro; capex pesado em equipamentos de agências; e faturas de telecom de agências e escritórios pagas sem visibilidade — contratos vencidos, links subutilizados, cobranças indevidas que ninguém audita.<br><br>A Selbetti resolve as três: RPA automatiza a conciliação de transações com zero digitação; locação transforma capex em opex previsível com manutenção inclusa; e a Guiando automatiza a gestão e auditoria de todas as faturas de telecom — o Grupo Boticário economizou mais de R$15MM com essa solução. Instituições financeiras com múltiplas agências costumam ter entre 15% e 20% de desperdício nessa linha.<br><br>Qual das três está mais crítica para você agora?</div>
       </div>
     </div>
 <div class="script-hint">💬 <strong>Como usar:</strong> Copie o pitch acima, cole no chat do Claude e peça para transformar em script de cold call com objeções para essa persona.</div>
@@ -6523,6 +7239,249 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
   </div>
 </div>
 
+
+    </div>
+  </div>
+</div>
+<div class="bu-guide">
+  <div class="app-shell" style="padding-top:0">
+    <div class="bu-guide-title">📚 Guia rápido das 10 BUs</div>
+    <div class="bu-guide-sub">Para o BDR entender o portfólio antes de prospectar — abertura, produtos, gatilhos e quando não entrar</div>
+    <div class="bu-grid">
+<div class="bu-card">
+  <div class="bu-card-hd" onclick="togAny(this)">
+    <div class="bu-card-icon">🖨️</div>
+    <div class="bu-card-meta">
+      <div class="bu-card-title">Print Solutions</div>
+      <div class="bu-card-subtitle">Outsourcing de Impressão · MPS · Gestão de Frota</div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="bu-card-body">
+    <div class="bu-section-label">Abertura da conversa</div>
+    <div class="bu-pitch">Impressão ainda consome muito recurso e pouca governança em muitas empresas. Custo por página desconhecido, manutenção imprevisível, equipamentos obsoletos — e ninguém sabe quanto cada área gasta.</div>
+    <div class="bu-section-label">Portfólio</div>
+    <div class="bu-products">Office · Tracker · Follow You Print · Collect · MDI · Alto Volume · Plotter · Scanner · Multifuncionais Ricoh, Kyocera, Xerox, Epson</div>
+    <div class="bu-section-label">Personas · Primeiro contato</div>
+    <div class="bu-products">Ger. de TI · Ger. Administrativo · Ger. de Compras · Diretor Financeiro</div>
+    <div class="bu-section-label">⚡ Gatilhos de entrada</div>
+    <div class="bu-trigger">Equipamento +5 anos · Contrato expirando em 6 meses · Reclamações de TI · Compra descentralizada · Manutenção frequente</div>
+    <div class="bu-section-label">✗ Anti-ICP — não vale o esforço</div>
+    <div class="bu-anti">Menos de 20 colaboradores · Negócios 100% digitais · Contrato recente (<12 meses) com concorrente</div>
+    
+    <div class="bu-cta">CTA: "30 minutos para entender como vocês estão estruturados hoje"</div>
+  </div>
+</div><div class="bu-card">
+  <div class="bu-card-hd" onclick="togAny(this)">
+    <div class="bu-card-icon">💻</div>
+    <div class="bu-card-meta">
+      <div class="bu-card-title">IT Devices</div>
+      <div class="bu-card-subtitle">Outsourcing de TI · Segurança Patrimonial · Seminovos · Guiando TEM</div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="bu-card-body">
+    <div class="bu-section-label">Abertura da conversa</div>
+    <div class="bu-pitch">Alto capex em equipamentos que ficam obsoletos antes de amortizar. Faturas de telecom pagas todo mês sem saber se as cobranças estão corretas. Portaria manual cara, CFTV antigo sem análise.</div>
+    <div class="bu-section-label">Portfólio</div>
+    <div class="bu-products">Desktops · Notebooks · Monitores · Smartphones · Tablets · Totens · CFTV · Portaria Virtual · Controle de Acesso · Vídeo Analítico · Seminovos Dell, Lenovo, HP · Guiando (gestão de despesas telecom)</div>
+    <div class="bu-section-label">Personas · Primeiro contato</div>
+    <div class="bu-products">Ger. de TI · Ger. de Infraestrutura · Ger. de Segurança · Diretor Administrativo · CFO</div>
+    <div class="bu-section-label">⚡ Gatilhos de entrada</div>
+    <div class="bu-trigger">Expansão de headcount · Nova sede ou filial · Incidente de segurança recente · Equipamentos +4 anos · Faturas de telecom sem auditoria</div>
+    <div class="bu-section-label">✗ Anti-ICP — não vale o esforço</div>
+    <div class="bu-anti">Home office puro · Sem infraestrutura física relevante · Startups muito pequenas</div>
+    <div class="bu-section-label">Case de referência</div><div class="bu-case-ref">✓ Grupo Boticário: +R$15MM em economia em despesas de telecom com Guiando.</div>
+    <div class="bu-cta">CTA: "30 minutos para entender a operação atual"</div>
+  </div>
+</div><div class="bu-card">
+  <div class="bu-card-hd" onclick="togAny(this)">
+    <div class="bu-card-icon">🏷️</div>
+    <div class="bu-card-meta">
+      <div class="bu-card-title">Label Solutions</div>
+      <div class="bu-card-subtitle">Impressoras Térmicas · RFID · Coletores · Etiquetas · Rastreabilidade</div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="bu-card-body">
+    <div class="bu-section-label">Abertura da conversa</div>
+    <div class="bu-pitch">A impressora térmica parece simples, mas é um ponto crítico da operação. Quando para, para a expedição. Inventário errado gera perda financeira que ninguém detecta. Rastreabilidade de lote é exigência de auditoria que processos manuais não atendem.</div>
+    <div class="bu-section-label">Portfólio</div>
+    <div class="bu-products">Impressoras Térmicas (Zebra, Honeywell, Sato, Entrust, Argox) · Etiquetas Adesivas · Tags · Pulseiras · Ribbons · RFID · Coletores · Leitores de Dados (Zebra, Honeywell, Urovo, Datalogic)</div>
+    <div class="bu-section-label">Personas · Primeiro contato</div>
+    <div class="bu-products">Ger. de Logística/Supply Chain · Ger. de Operações · Ger. de TI · Ger. de Compras</div>
+    <div class="bu-section-label">⚡ Gatilhos de entrada</div>
+    <div class="bu-trigger">Crescimento de volume · Implantação de WMS/ERP · Exigência regulatória (ANVISA, SNCM) · Troca de fornecedor desabastecendo · Implantação de RFID</div>
+    <div class="bu-section-label">✗ Anti-ICP — não vale o esforço</div>
+    <div class="bu-anti">Sem necessidade de impressão ou rastreamento físico · Negócios 100% digitais</div>
+    <div class="bu-section-label">Case de referência</div><div class="bu-case-ref">✓ DHL: RFID em CD com rastreabilidade ponta a ponta.</div>
+    <div class="bu-cta">CTA: "30 minutos para entender a operação atual"</div>
+  </div>
+</div><div class="bu-card">
+  <div class="bu-card-hd" onclick="togAny(this)">
+    <div class="bu-card-icon">⚙️</div>
+    <div class="bu-card-meta">
+      <div class="bu-card-title">Process Solutions</div>
+      <div class="bu-card-subtitle">RPA · ECM · BPMS · S-SIGN · Digitalização · Gestão de RH</div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="bu-card-body">
+    <div class="bu-section-label">Abertura da conversa</div>
+    <div class="bu-pitch">Processos críticos manuais — aprovação, faturamento, contratos, RH, compras — que geram retrabalho e risco de erro. Documentos físicos que consomem espaço, aumentam risco de perda e dificultam auditorias. TI é o principal bloqueador: apresente sempre como camada sobre o ERP existente.</div>
+    <div class="bu-section-label">Portfólio</div>
+    <div class="bu-products">ECM · BPMS · Digitalização com IA/OCR · RPA · S-SIGN (assinatura digital ICP-Brasil) · Chatbot · Workflow · SmartShare (plataforma proprietária) · Gestão Funcional de RH</div>
+    <div class="bu-section-label">Personas · Primeiro contato</div>
+    <div class="bu-products">Ger. de Operações · Ger. de TI · Ger. de RH · Diretor Administrativo · COO</div>
+    <div class="bu-section-label">⚡ Gatilhos de entrada</div>
+    <div class="bu-trigger">Projeto de transformação digital · Crescimento sem aumento de equipe · Auditoria/compliance pendente · Reclamações de lentidão · Assinatura presencial gerando atraso</div>
+    <div class="bu-section-label">✗ Anti-ICP — não vale o esforço</div>
+    <div class="bu-anti">Empresas muito pequenas sem processos estruturados · Poucos documentos · Contrato recente com ECM/BPM concorrente</div>
+    
+    <div class="bu-cta">CTA: "40–50 minutos para mapear quais processos fazem mais sentido automatizar"</div>
+  </div>
+</div><div class="bu-card">
+  <div class="bu-card-hd" onclick="togAny(this)">
+    <div class="bu-card-icon">🏪</div>
+    <div class="bu-card-meta">
+      <div class="bu-card-title">Retail Experience</div>
+      <div class="bu-card-subtitle">ESL · Inteligência de Preços (Eiprice) · Retail Media · Cartazeamento · Sommelier Digital</div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="bu-card-body">
+    <div class="bu-section-label">Abertura da conversa</div>
+    <div class="bu-pitch">Divergência de preço entre gôndola, PDV e canais digitais. Difícil atualizar preços e campanhas com agilidade. Sem visibilidade sobre como a concorrência está precificando — você descobre a guerra de preços quando já perdeu a margem.</div>
+    <div class="bu-section-label">Portfólio</div>
+    <div class="bu-products">Etiquetas Eletrônicas — ESL (Pricefy) · Inteligência de Preços (Eiprice) · Retail Media · Cartazeamento Digital · Digital Signage & Rádio Indoor · Sommelier Digital · Gestão de Ofertas</div>
+    <div class="bu-section-label">Personas · Primeiro contato</div>
+    <div class="bu-products">Ger. de Marketing/Trade Marketing · Diretor Comercial · Head de Pricing · Ger. de Operações de Loja</div>
+    <div class="bu-section-label">⚡ Gatilhos de entrada</div>
+    <div class="bu-trigger">Abertura de loja/expansão · Perda de margem por guerra de preços · Modernização de PDV · Loja digital/marketplace · Campanha descentralizada com erros</div>
+    <div class="bu-section-label">✗ Anti-ICP — não vale o esforço</div>
+    <div class="bu-anti">Sem loja física e sem estratégia de pricing · B2B puro · Lojas pequenas independentes</div>
+    <div class="bu-section-label">Case de referência</div><div class="bu-case-ref">✓ Leroy Merlin: ESL com atualização de preço em tempo real. Pague Menos: agilidade e eficiência operacional na gestão de preços.</div>
+    <div class="bu-cta">CTA: "45–60 minutos com especialista para avaliar o cenário"</div>
+  </div>
+</div><div class="bu-card">
+  <div class="bu-card-hd" onclick="togAny(this)">
+    <div class="bu-card-icon">📞</div>
+    <div class="bu-card-meta">
+      <div class="bu-card-title">Customer Experience</div>
+      <div class="bu-card-subtitle">Omnichannel · URA Inteligente · Bots · Monitoria com IA · Discador · Chatbot BPO</div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="bu-card-body">
+    <div class="bu-section-label">Abertura da conversa</div>
+    <div class="bu-pitch">Atendimento espalhado sem centralização. Difícil manter padrão e qualidade. Empresas monitoram em média apenas 2% das chamadas — 98% ficam sem análise. Custo de atendimento humano 20× maior que autoatendimento.</div>
+    <div class="bu-section-label">Portfólio</div>
+    <div class="bu-products">Plataforma Omnichannel · URA Inteligente · PABX Virtual · Chatbot · Voicebot · IA para Monitoria de Qualidade · Discador Automático · Videochamada · Chatbot BPO</div>
+    <div class="bu-section-label">Personas · Primeiro contato</div>
+    <div class="bu-products">Ger. de CX/Call Center · Diretor Comercial · CTO · Dir. de Operações</div>
+    <div class="bu-section-label">⚡ Gatilhos de entrada</div>
+    <div class="bu-trigger">Crescimento de volume sem crescer equipe · Contrato de PABX vencendo · NPS baixo · Novo canal digital sem integração · Reclamações de tempo de espera</div>
+    <div class="bu-section-label">✗ Anti-ICP — não vale o esforço</div>
+    <div class="bu-anti">Sem contato direto com clientes em volume · B2B puro consultivo · Startups sem operação de atendimento</div>
+    <div class="bu-section-label">Case de referência</div><div class="bu-case-ref">✓ Credsystem: URA com 1,2M ligações/mês — retenção de 74%. Me Poupe!: bot WhatsApp com CSAT 82% e retenção 72%.</div>
+    <div class="bu-cta">CTA: "45–60 minutos com especialista em CX"</div>
+  </div>
+</div><div class="bu-card">
+  <div class="bu-card-hd" onclick="togAny(this)">
+    <div class="bu-card-icon">🖥️</div>
+    <div class="bu-card-meta">
+      <div class="bu-card-title">IT Solutions</div>
+      <div class="bu-card-subtitle">ITO · Cloud · Datacenter · Observabilidade · Service Desk · Field Service</div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="bu-card-body">
+    <div class="bu-section-label">Abertura da conversa</div>
+    <div class="bu-pitch">Infraestrutura que cresceu sem estrutura. TI sobrecarregada entre manter a operação e entregar evolução para o negócio. Sistemas críticos que não podem cair — e TI interna que não cobre todos os turnos.</div>
+    <div class="bu-section-label">Portfólio</div>
+    <div class="bu-products">Selbetti ITO (outsourcing de TI) · Selbetti Cloud (MultiCloud) · Selbetti Datacenter · Selbetti Observabilidade (Zabbix — pioneiros no Brasil) · Service Desk · Field Service · NOC · AWS · IBM · Oracle OCI · Google Cloud</div>
+    <div class="bu-section-label">Personas · Primeiro contato</div>
+    <div class="bu-products">CIO/Diretor de TI · Ger. de Infraestrutura · Ger. de Operações de TI</div>
+    <div class="bu-section-label">⚡ Gatilhos de entrada</div>
+    <div class="bu-trigger">Renovação de contrato de TI · Projeto de migração cloud · Incidente/queda recente · Crescimento acelerado · Auditoria/compliance pendente</div>
+    <div class="bu-section-label">✗ Anti-ICP — não vale o esforço</div>
+    <div class="bu-anti">TI totalmente terceirizada com contrato recente · Sem ambiente de TI relevante · Startups early-stage</div>
+    <div class="bu-section-label">Case de referência</div><div class="bu-case-ref">✓ Cresol: modernização de infraestrutura de telecom com -40% nos custos operacionais.</div>
+    <div class="bu-cta">CTA: "45 minutos para compartilhar benchmarks e insights práticos"</div>
+  </div>
+</div><div class="bu-card">
+  <div class="bu-card-hd" onclick="togAny(this)">
+    <div class="bu-card-icon">🔒</div>
+    <div class="bu-card-meta">
+      <div class="bu-card-title">Cybersecurity Solutions</div>
+      <div class="bu-card-subtitle">SOC 24×7 · Pentest · EDR · LGPD · Assessment · IAM · SIEM/XDR</div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="bu-card-body">
+    <div class="bu-section-label">Abertura da conversa</div>
+    <div class="bu-pitch">Difícil monitorar 24×7. Demora para identificar e responder incidentes. Vulnerabilidades não identificadas. LGPD tratada com planilhas e controles manuais. Auditoria chegou e não tem evidência de controle.</div>
+    <div class="bu-section-label">Portfólio</div>
+    <div class="bu-products">SOC (Security Operations Center) · Pentest · EDR · ITAM · MDM · Diagnóstico/Assessment · DPO as a Service · DRPS · SIEM · XDR · Firewall · IAM/PAM/IGA · Phishing Simulado</div>
+    <div class="bu-section-label">Personas · Primeiro contato</div>
+    <div class="bu-products">CISO · CIO/Diretor de TI · DPO · CEO (conformidade regulatória)</div>
+    <div class="bu-section-label">⚡ Gatilhos de entrada</div>
+    <div class="bu-trigger">Incidente recente (ransomware, vazamento) · Auditoria de LGPD · Parceiro exigindo certificação · Expansão da superfície de ataque · Pentest nunca realizado</div>
+    <div class="bu-section-label">✗ Anti-ICP — não vale o esforço</div>
+    <div class="bu-anti">Sem dados sensíveis ou regulação · Contrato de SOC ativo há menos de 1 ano · Sem budget mínimo para segurança</div>
+    <div class="bu-section-label">Case de referência</div><div class="bu-case-ref">✓ Brametal: adequação LGPD de forma ágil e estratégica.</div>
+    <div class="bu-cta">CTA: "30–45 minutos para diagnóstico exploratório"</div>
+  </div>
+</div><div class="bu-card">
+  <div class="bu-card-hd" onclick="togAny(this)">
+    <div class="bu-card-icon">📊</div>
+    <div class="bu-card-meta">
+      <div class="bu-card-title">Data & AI Solutions</div>
+      <div class="bu-card-subtitle">Interactive Intelligence · MDM · Hawk · Quality Manager · Field Service Dados</div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="bu-card-body">
+    <div class="bu-section-label">Abertura da conversa</div>
+    <div class="bu-pitch">Dados espalhados, relatórios manuais, decisões por planilha ou 'feeling'. IA que não vira realidade no dia a dia. Hospitais perdendo 8–15% da receita em glosas não geridas. LGPD tratada de forma manual sem rastreabilidade.</div>
+    <div class="bu-section-label">Portfólio</div>
+    <div class="bu-products">Interactive Intelligence (IA generativa com dados da empresa) · MDM/Master Data Management · Hawk (ciclo de receitas hospitalares) · Quality Manager (LGPD, GRC, Governança de IA, ISO 27001) · Field Service Dados (outsourcing de profissionais de dados e IA) · Databricks (parceiro certificado — +40 profissionais)</div>
+    <div class="bu-section-label">Personas · Primeiro contato</div>
+    <div class="bu-products">CDO/Head de Dados · CIO/CTO · Diretor de Operações · CEO (transformação digital) · CFO hospitalar</div>
+    <div class="bu-section-label">⚡ Gatilhos de entrada</div>
+    <div class="bu-trigger">Iniciativa de IA generativa · Fusão/aquisição gerando caos de dados · Compliance de dados em pauta · Projeto de transformação digital · Glosas hospitalares crescendo</div>
+    <div class="bu-section-label">✗ Anti-ICP — não vale o esforço</div>
+    <div class="bu-anti">Sem volume mínimo de dados · Sem cultura analítica · Sem budget para dados</div>
+    <div class="bu-section-label">Case de referência</div><div class="bu-case-ref">✓ Rede D'Or São Luiz, Fleury, Hermes Pardini — Hawk. Ultragaz — Data & AI. Databricks: +25 anos em dados de Saúde, Seguros, Finanças e Varejo.</div>
+    <div class="bu-cta">CTA: "Reunião com especialista em dados ou IA"</div>
+  </div>
+</div><div class="bu-card">
+  <div class="bu-card-hd" onclick="togAny(this)">
+    <div class="bu-card-icon">💼</div>
+    <div class="bu-card-meta">
+      <div class="bu-card-title">Business Consulting</div>
+      <div class="bu-card-subtitle">Gestão de Processos · PMO/BPMO · ERP/CRM · Outsourcing GP/TI · CIO as a Service · LGPD · Gestão de Mudança</div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="bu-card-body">
+    <div class="bu-section-label">Abertura da conversa</div>
+    <div class="bu-pitch">Estratégia que não se desdobra bem. Processos não claros ou não padronizados. Projetos atrasados ou estourando orçamento. TI ainda operacional e não estratégica. Difícil reter especialistas de TI no mercado.</div>
+    <div class="bu-section-label">Portfólio</div>
+    <div class="bu-products">Consultoria em Gestão de Processos (BPMO) · Consultoria em Gestão de Projetos (PMO) · Outsourcing de Profissionais de TI & BPO · CIO as a Service · ERP/CRM (seleção e implantação) · Transformação Digital · Gestão de Mudança Organizacional · Diagnóstico de Maturidade de TI · LGPD Consultoria</div>
+    <div class="bu-section-label">Personas · Primeiro contato</div>
+    <div class="bu-products">CEO/Diretor Geral · COO · Ger. de Projetos/PMO · CIO · Ger. de RH</div>
+    <div class="bu-section-label">⚡ Gatilhos de entrada</div>
+    <div class="bu-trigger">Planejamento estratégico sem execução clara · Projeto crítico em risco · Crescimento acelerado · Troca de liderança · ERP a ser implantado · Processos nunca mapeados</div>
+    <div class="bu-section-label">✗ Anti-ICP — não vale o esforço</div>
+    <div class="bu-anti">Empresas muito pequenas sem processos formalizados · Gestão informal · Consultoria estratégica ativa recente</div>
+    <div class="bu-section-label">Case de referência</div><div class="bu-case-ref">✓ Cresol: -40% custos operacionais. Elos: -50% tempo publicação de cotas. Coonagro: SAP com resultados no 5º dia útil. Unimed, Seguros Unimed, WLM, Schulz, Intelbras, Ailos, Oro Agri.</div>
+    <div class="bu-cta">CTA: "30 minutos exploratórios com especialista"</div>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
 <div class="app-footer">
   Selbetti Tecnologia S.A. · Matriz BDR Cross-BU v2.0 · Uso interno · July 2026
 </div>
